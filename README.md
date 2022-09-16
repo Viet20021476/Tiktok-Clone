@@ -1,16 +1,17 @@
-# hello_flutter
+# Phát triển ứng dụng di động - INT3120 40 2022-2023
 
 A new Flutter project.
 
-## Getting Started
+## Thành viên nhóm 14
 
-This project is a starting point for a Flutter application.
+20021476 - Nguyễn Duy Việt
+20021469 - Nguyễn Đức Tùng
+20021347 - Nguyễn Duy Hiến
 
-A few resources to get you started if this is your first Flutter project:
+## Tiến trình học
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Tuần 1 : Nghỉ lễ 2/9
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Tuần 2 : Tạo một chương trình Hello World
+
+![image](https://user-images.githubusercontent.com/78079771/190576884-88bf24ff-82ce-411e-a78e-82ee01228a58.png)
