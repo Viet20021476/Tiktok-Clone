@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
+import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: backGroundColor,
       ),
-      home: LoginScreen(),
+      home: RegisterScreen(),
     );
   }
 }

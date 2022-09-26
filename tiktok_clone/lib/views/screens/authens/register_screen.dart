@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
+import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController userNameController = new TextEditingController();
 
-  LoginScreen({super.key});
+  RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String login = 'Login';
+    String register = 'Register';
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -67,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                   margin: EdgeInsets.only(top: 50),
                   child: Center(
                     child: Text(
-                      login,
+                      register,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -100,6 +101,18 @@ class LoginScreen extends StatelessWidget {
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
                       child: TextInputField(
+                        controller: userNameController,
+                        icon: Icons.person,
+                        labelText: 'Username',
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: Color.fromARGB(255, 255, 244, 244)))),
+                      child: TextInputField(
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
@@ -110,13 +123,13 @@ class LoginScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
-                                  color: Color.fromARGB(255, 240, 234, 234)))),
+                                  color: Color.fromARGB(255, 255, 244, 244)))),
                       child: TextInputField(
                         controller: passwordController,
                         icon: Icons.lock,
                         labelText: 'Password',
                       ),
-                    )
+                    ),
                   ]),
                 ),
                 SizedBox(
@@ -135,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "Login",
+                        "Register",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -150,15 +163,14 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       child: Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pop();
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => RegisterScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
                       },
                     ),
                     InkWell(
