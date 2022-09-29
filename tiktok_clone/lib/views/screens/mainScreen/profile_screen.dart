@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl:
-                          "https://q5n8c8q9.rocketcdn.me/wp-content/uploads/2018/08/The-20-Best-Royalty-Free-Music-Sites-in-2018.png",
+                              "https://q5n8c8q9.rocketcdn.me/wp-content/uploads/2018/08/The-20-Best-Royalty-Free-Music-Sites-in-2018.png",
                           height: 100.0,
                           width: 100.0,
                           placeholder: (context, url) =>
@@ -229,12 +229,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/Ii4Cv63yG9iYawDtKC/giphy.gif",
+                                  "https://media.giphy.com/media/Ii4Cv63yG9iYawDtKC/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
@@ -252,12 +252,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif",
+                                  "https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
@@ -275,12 +275,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/3o72EX5QZ9N9d51dqo/giphy.gif",
+                                  "https://media.giphy.com/media/3o72EX5QZ9N9d51dqo/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
@@ -302,12 +302,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/4oMoIbIQrvCjm/giphy.gif",
+                                  "https://media.giphy.com/media/4oMoIbIQrvCjm/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
@@ -325,12 +325,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/aZmD30dCFaPXG/giphy.gif",
+                                  "https://media.giphy.com/media/aZmD30dCFaPXG/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
@@ -348,12 +348,12 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.black26,
                               border:
-                              Border.all(color: Colors.white70, width: .5)),
+                                  Border.all(color: Colors.white70, width: .5)),
                           child: FittedBox(
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
                               imageUrl:
-                              "https://media.giphy.com/media/NU8tcjnPaODTy/giphy.gif",
+                                  "https://media.giphy.com/media/NU8tcjnPaODTy/giphy.gif",
                               placeholder: (context, url) => Padding(
                                 padding: const EdgeInsets.all(35.0),
                                 child: CircularProgressIndicator(),
