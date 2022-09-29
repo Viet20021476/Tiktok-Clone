@@ -174,11 +174,7 @@ class ProfileScreen extends StatelessWidget {
           ]),
           Expanded(
               child: TabBarView(
-            children: [
-              FirstTab(),
-              SecondTab(),
-              ThirdTab()
-            ],
+            children: [FirstTab(), SecondTab(), ThirdTab()],
           ))
         ]),
       ),
