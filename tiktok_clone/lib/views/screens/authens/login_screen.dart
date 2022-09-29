@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/messages_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -123,7 +125,10 @@ class LoginScreen extends StatelessWidget {
                   height: 30,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
