@@ -5,10 +5,12 @@ import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 }
 
