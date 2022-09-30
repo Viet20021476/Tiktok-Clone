@@ -14,9 +14,11 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(
-            "Hello",
-            style: TextStyle(color: Colors.black, fontSize: 15),
+          title: Center(
+            child: Text(
+              "Hello",
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
