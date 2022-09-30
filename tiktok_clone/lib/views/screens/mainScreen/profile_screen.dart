@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_1.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_2.dart';
@@ -14,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Center(
+          title: const Center(
             child: Text(
               "Hello",
               style: TextStyle(color: Colors.black, fontSize: 15),
@@ -22,10 +21,10 @@ class ProfileScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: Icon(Icons.person_add, color: Colors.black),
-          actions: [
+          leading: const Icon(Icons.person_add, color: Colors.black),
+          actions: const [
             Padding(
-              padding: const EdgeInsets.only(right: 12),
+              padding: EdgeInsets.only(right: 12),
               child: Icon(
                 Icons.menu,
                 color: Colors.black,
@@ -41,15 +40,15 @@ class ProfileScreen extends StatelessWidget {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.grey[200],
-                image: DecorationImage(
+                image: const DecorationImage(
                     image: NetworkImage(
                         "https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif"),
                     fit: BoxFit.fill)),
           ),
 
           // user name
-          Padding(
-            padding: const EdgeInsets.all(20.0),
+          const Padding(
+            padding: EdgeInsets.all(20.0),
             child: Text("@Testuser",
                 style: TextStyle(color: Colors.black, fontSize: 15)),
           ),
@@ -63,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: Column(
-                    children: [
+                    children: const [
                       Text("12",
                           style: TextStyle(
                               color: Colors.black,
@@ -77,9 +76,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
+                // ignore: avoid_unnecessary_containers
                 child: Container(
                   child: Column(
-                    children: [
+                    children: const [
                       Text("34",
                           style: TextStyle(
                               color: Colors.black,
@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Container(
                 alignment: Alignment.centerLeft,
                 child: Column(
-                  children: [
+                  children: const [
                     Text("56",
                         style: TextStyle(
                             color: Colors.black,
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           // buttons -> edit profile, insta links, bookmark
 
@@ -119,38 +119,39 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                child: Text(
-                  "Edit profile",
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(5)),
+                child: const Text(
+                  "Edit profile",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Container(
-                  padding: EdgeInsets.all(11),
-                  child: Icon(Icons.camera_alt, color: Colors.black),
+                  padding: const EdgeInsets.all(11),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.circular(5)),
+                  child: const Icon(Icons.camera_alt, color: Colors.black),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(11),
+                padding: const EdgeInsets.all(11),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(5)),
                 child: Icon(
                   Icons.bookmark_border,
                   color: Colors.grey[800],
                 ),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(5)),
               )
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           // bio
           Text(
             "User bio here",
@@ -159,7 +160,7 @@ class ProfileScreen extends StatelessWidget {
 
           // default tab controller
 
-          TabBar(tabs: [
+          const TabBar(tabs: [
             Tab(
               icon: Icon(
                 Icons.grid_3x3,
@@ -179,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             )
           ]),
-          Expanded(
+          const Expanded(
               child: TabBarView(
             children: [FirstTab(), SecondTab(), ThirdTab()],
           ))

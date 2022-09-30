@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/messages_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   LoginScreen({super.key});
 
@@ -17,6 +16,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
+          // ignore: avoid_unnecessary_containers
           child: Container(
         child: Column(children: <Widget>[
           Container(
@@ -67,11 +67,11 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Positioned(
                     child: Container(
-                  margin: EdgeInsets.only(top: 50),
+                  margin: const EdgeInsets.only(top: 50),
                   child: Center(
                     child: Text(
                       login,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
@@ -82,14 +82,14 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color.fromRGBO(143, 148, 251, .2),
                             blurRadius: 20,
@@ -97,8 +97,8 @@ class LoginScreen extends StatelessWidget {
                       ]),
                   child: Column(children: [
                     Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
@@ -109,8 +109,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 240, 234, 234)))),
@@ -122,24 +122,24 @@ class LoginScreen extends StatelessWidget {
                     )
                   ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
                   },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(colors: [
+                      gradient: const LinearGradient(colors: [
                         Color.fromRGBO(143, 148, 251, 1),
                         Color.fromRGBO(143, 148, 251, .6),
                       ]),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Login",
                         style: TextStyle(
@@ -148,14 +148,14 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      child: Text(
+                      child: const Text(
                         'Register',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
@@ -169,7 +169,7 @@ class LoginScreen extends StatelessWidget {
                       },
                     ),
                     InkWell(
-                      child: Text(
+                      child: const Text(
                         'Forgot password?',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),

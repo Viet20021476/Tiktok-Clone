@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
-import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {

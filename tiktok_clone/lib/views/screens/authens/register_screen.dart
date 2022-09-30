@@ -3,9 +3,9 @@ import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class RegisterScreen extends StatelessWidget {
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
-  final TextEditingController userNameController = new TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
 
   RegisterScreen({super.key});
 
@@ -15,6 +15,7 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
+          // ignore: avoid_unnecessary_containers
           child: Container(
         child: Column(children: <Widget>[
           Container(
@@ -65,11 +66,11 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 Positioned(
                     child: Container(
-                  margin: EdgeInsets.only(top: 50),
+                  margin: const EdgeInsets.only(top: 50),
                   child: Center(
                     child: Text(
                       register,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
@@ -80,14 +81,14 @@ class RegisterScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color.fromRGBO(143, 148, 251, .2),
                             blurRadius: 20,
@@ -95,8 +96,8 @@ class RegisterScreen extends StatelessWidget {
                       ]),
                   child: Column(children: [
                     Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
@@ -107,8 +108,8 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
@@ -119,8 +120,8 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
@@ -132,7 +133,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 InkWell(
@@ -141,12 +142,12 @@ class RegisterScreen extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(colors: [
+                      gradient: const LinearGradient(colors: [
                         Color.fromRGBO(143, 148, 251, 1),
                         Color.fromRGBO(143, 148, 251, .6),
                       ]),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Register",
                         style: TextStyle(
@@ -155,14 +156,14 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      child: Text(
+                      child: const Text(
                         'Login',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
@@ -174,7 +175,7 @@ class RegisterScreen extends StatelessWidget {
                       },
                     ),
                     InkWell(
-                      child: Text(
+                      child: const Text(
                         'Forgot password?',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),

@@ -13,10 +13,10 @@ var borderColor = Colors.blueGrey;
 
 const pages = [
   Text("Home Screen"),
-  const SearchScreen(),
+  SearchScreen(),
   Text("Add page Screen"),
-  const MessagesScreen(),
-  const ProfileScreen(),
+  MessagesScreen(),
+  ProfileScreen(),
 ];
 
 //firebase
