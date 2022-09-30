@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             "Hello",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black, fontSize: 15),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -34,17 +34,22 @@ class ProfileScreen extends StatelessWidget {
         body: Column(children: [
           // Profile photo
           Container(
-            height: 120,
-            width: 120,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.grey[200]),
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey[200],
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif"),
+                    fit: BoxFit.fill)),
           ),
 
           // user name
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text("@Testuser",
-                style: TextStyle(color: Colors.black, fontSize: 20)),
+                style: TextStyle(color: Colors.black, fontSize: 15)),
           ),
 
           // number of following, followers, likes
@@ -61,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: 24)),
+                              fontSize: 18)),
                       SizedBox(height: 5),
                       Text("Following",
                           style: TextStyle(color: Colors.grey, fontSize: 15))
@@ -77,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: 24)),
+                              fontSize: 18)),
                       SizedBox(height: 5),
                       Text("Followers",
                           style: TextStyle(color: Colors.grey, fontSize: 15))
@@ -94,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 24)),
+                            fontSize: 18)),
                     SizedBox(height: 5),
                     Text("   Likes   ",
                         style: TextStyle(color: Colors.grey, fontSize: 15))
@@ -115,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                 child: Text(
                   "Edit profile",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  style: TextStyle(color: Colors.black, fontSize: 14),
                 ),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
@@ -124,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Container(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.all(11),
                   child: Icon(Icons.camera_alt, color: Colors.black),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
@@ -132,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.all(11),
                 child: Icon(
                   Icons.bookmark_border,
                   color: Colors.grey[800],
@@ -146,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
           SizedBox(height: 15),
           // bio
           Text(
-            "Bio here",
+            "User bio here",
             style: TextStyle(color: Colors.grey[700]),
           ),
 
