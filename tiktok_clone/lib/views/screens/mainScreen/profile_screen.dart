@@ -20,12 +20,15 @@ class ProfileScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: Icon(Icons.person_add, color: Colors.black),
-          actions: [
+          leading: const ImageIcon(
+            AssetImage('assets/my-icons/addaccounticon.png'),
+            color: Colors.black,
+          ),
+          actions: const [
             Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Icon(
-                Icons.menu,
+              padding: EdgeInsets.only(right: 12),
+              child: ImageIcon(
+                AssetImage('assets/my-icons/menuicon.png'),
                 color: Colors.black,
               ),
             )

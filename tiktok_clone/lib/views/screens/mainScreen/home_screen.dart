@@ -29,14 +29,30 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: pageIdx,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30), label: "Home"),
+              icon: ImageIcon(
+                AssetImage('assets/my-icons/homesolidicon.png'),
+                size: 30,
+              ),
+              label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search, size: 30), label: "Search"),
+              icon: ImageIcon(
+                AssetImage('assets/my-icons/searchicon.png'),
+                size: 30,
+              ),
+              label: "Search"),
           BottomNavigationBarItem(icon: CustomIcon(), label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.message, size: 30), label: "Messages"),
+              icon: ImageIcon(
+                AssetImage('assets/my-icons/messagestrokeicon.png'),
+                size: 30,
+              ),
+              label: "Inbox"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person, size: 30), label: "Profile")
+              icon: ImageIcon(
+                AssetImage('assets/my-icons/accountstrokeicon.png'),
+                size: 30,
+              ),
+              label: "Profile")
         ],
       ),
       body: pages[pageIdx],
