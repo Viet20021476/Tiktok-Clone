@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:get/get.dart';
 
 class AuthController extends GetX {
-  AuthController({required super.builder});
+  // ignore: use_key_in_widget_constructors
+  const AuthController({required super.builder});
 
   //register the user
   void registerUser(

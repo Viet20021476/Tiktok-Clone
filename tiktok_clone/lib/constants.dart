@@ -15,8 +15,8 @@ const pages = [
   Text('video screen'),
   SearchScreen(),
   Text("Add page Screen"),
-  const MessagesScreen(),
-  const ProfileScreen(),
+  MessagesScreen(),
+  ProfileScreen(),
 ];
 
 //firebase
