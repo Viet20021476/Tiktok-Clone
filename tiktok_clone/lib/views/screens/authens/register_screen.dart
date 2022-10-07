@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
@@ -65,18 +67,43 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                    top: 30,
+                    right: 20,
                     child: Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  child: Center(
-                    child: Text(
-                      register,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
-                    ),
+                      child: Center(
+                        child: Text(
+                          register,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )),
+                Positioned(
+                  top: 172,
+                  left: MediaQuery.of(context).size.width / 2 - 64,
+                  child: Stack(
+                    children: [
+                      const CircleAvatar(
+                        radius: 64,
+                        backgroundImage: NetworkImage(
+                            'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                        backgroundColor: Colors.black,
+                      ),
+                      Positioned(
+                        bottom: -10,
+                        left: 80,
+                        child: IconButton(
+                          onPressed: () => authController.pickImage(),
+                          icon: const Icon(
+                            Icons.add_a_photo,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ))
+                ),
               ],
             ),
           ),
@@ -129,6 +156,7 @@ class RegisterScreen extends StatelessWidget {
                         controller: passwordController,
                         icon: Icons.lock,
                         labelText: 'Password',
+                        isObscure: true,
                       ),
                     ),
                   ]),
@@ -137,7 +165,13 @@ class RegisterScreen extends StatelessWidget {
                   height: 30,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    authController.registerUser(
+                        userNameController.text,
+                        emailController.text,
+                        passwordController.text,
+                        authController.profilePhoto);
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
