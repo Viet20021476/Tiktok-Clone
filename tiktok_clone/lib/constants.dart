@@ -14,7 +14,7 @@ const backGroundColor2 = Colors.black;
 var buttonColor = Colors.red;
 var borderColor = Colors.blueGrey;
 
-const pages = [
+List pages = [
   VideoScreen(),
   SearchScreen(),
   AddVideoScreen(),
