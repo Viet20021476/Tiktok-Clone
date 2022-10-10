@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
@@ -106,6 +108,7 @@ class LoginScreen extends StatelessWidget {
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
+                        isObscure: false,
                       ),
                     ),
                     Container(
@@ -118,6 +121,7 @@ class LoginScreen extends StatelessWidget {
                         controller: passwordController,
                         icon: Icons.lock,
                         labelText: 'Password',
+                        isObscure: true,
                       ),
                     )
                   ]),
@@ -127,8 +131,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
+                    authController.loginUser(
+                        emailController.text, passwordController.text);
                   },
                   child: Container(
                     height: 50,

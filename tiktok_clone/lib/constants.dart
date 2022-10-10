@@ -6,6 +6,7 @@ import 'package:tiktok_clone/controllers/auth_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/messages_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/search_screen.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/video_screen.dart';
 
 const backGroundColor = Colors.white;
 const backGroundColor2 = Colors.black;
@@ -13,7 +14,7 @@ var buttonColor = Colors.red;
 var borderColor = Colors.blueGrey;
 
 const pages = [
-  Text('video screen'),
+  VideoScreen(),
   SearchScreen(),
   Text("Add page Screen"),
   MessagesScreen(),

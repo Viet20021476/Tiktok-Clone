@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
@@ -132,6 +131,7 @@ class RegisterScreen extends StatelessWidget {
                         controller: userNameController,
                         icon: Icons.person,
                         labelText: 'Username',
+                        isObscure: false,
                       ),
                     ),
                     Container(
@@ -144,6 +144,7 @@ class RegisterScreen extends StatelessWidget {
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
+                        isObscure: false,
                       ),
                     ),
                     Container(

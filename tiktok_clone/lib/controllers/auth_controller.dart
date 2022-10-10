@@ -5,13 +5,26 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/models/user.dart' as models;
+import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
-  late Rx<File?> _pickedImage;
+  late Rx<File?> _pickedImage = Rx<File?>(File('assets/images/clock.png'));
+  late Rx<User?> _user;
 
   File? get profilePhoto => _pickedImage.value;
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    firebaseAuth.signOut();
+    _user = Rx<User?>(firebaseAuth.currentUser);
+    _user.bindStream(firebaseAuth.authStateChanges());
+    ever(_user, setInitialScreen);
+  }
 
   void pickImage() async {
     final pickedImage =
@@ -44,6 +57,8 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(userCredential.user!.uid)
             .set(user.toJson());
+        Get.back();
+        Get.snackbar('Register successfully', '');
       } else {
         Get.snackbar('Fail', 'Please enter all the field');
       }
@@ -61,5 +76,26 @@ class AuthController extends GetxController {
     TaskSnapshot snap = await uploadTask;
     String downloadURL = await snap.ref.getDownloadURL();
     return downloadURL;
+  }
+
+  void loginUser(String email, String password) async {
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        await firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+      } else {
+        Get.snackbar('Error logging in', 'Please enter all the fields');
+      }
+    } catch (e) {
+      Get.snackbar('Error logging in', e.toString());
+    }
+  }
+
+  setInitialScreen(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => HomeScreen());
+    }
   }
 }
