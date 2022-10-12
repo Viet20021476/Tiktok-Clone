@@ -3,12 +3,20 @@ import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
-class RegisterScreen extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController userNameController = TextEditingController();
+class RegisterScreen extends StatefulWidget {
 
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  final TextEditingController userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
                   left: MediaQuery.of(context).size.width / 2 - 64,
                   child: Stack(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 64,
                         backgroundImage: NetworkImage(
                             'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
@@ -205,8 +213,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                        Navigator.of(context).pop();
                       },
                     ),
                     InkWell(
