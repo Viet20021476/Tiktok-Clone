@@ -72,18 +72,22 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width - 20,
                     child: TextInputField(
-                        controller: songController,
-                        labelText: "Song Name",
-                        icon: Icons.music_note),
+                      controller: songController,
+                      labelText: "Song Name",
+                      icon: Icons.music_note,
+                      isObscure: false,
+                    ),
                   ),
                   SizedBox(height: 10),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width - 20,
                     child: TextInputField(
-                        controller: captionController,
-                        labelText: "Caption",
-                        icon: Icons.closed_caption),
+                      controller: captionController,
+                      labelText: "Caption",
+                      icon: Icons.closed_caption,
+                      isObscure: false,
+                    ),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(

@@ -9,7 +9,7 @@ class TextInputField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.labelText,
-    this.isObscure = false,
+    required this.isObscure,
     required this.icon,
   });
 
@@ -25,6 +25,7 @@ class TextInputField extends StatelessWidget {
             color: Color.fromRGBO(143, 148, 251, 1),
           ),
           border: InputBorder.none),
+      obscureText: isObscure,
     );
   }
 }

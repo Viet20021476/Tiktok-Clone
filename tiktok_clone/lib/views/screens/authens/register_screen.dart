@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
@@ -140,6 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: userNameController,
                         icon: Icons.person,
                         labelText: 'Username',
+                        isObscure: false,
                       ),
                     ),
                     Container(
@@ -152,6 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
+                        isObscure: false,
                       ),
                     ),
                     Container(
