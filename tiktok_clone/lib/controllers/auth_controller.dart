@@ -25,9 +25,9 @@ class AuthController extends GetxController {
 
   //register the user
   void registerUser(
-      String username, String email, String password, File? image) async {
+      String userName, String email, String password, File? image) async {
     try {
-      if (username.isNotEmpty &&
+      if (userName.isNotEmpty &&
           email.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
@@ -37,7 +37,7 @@ class AuthController extends GetxController {
         String downloadURL = await uploadToStorage(image);
         models.User user = models.User(
             email: email,
-            name: username,
+            name: userName,
             uid: userCredential.user!.uid,
             profilePhoto: downloadURL);
         await firestore
