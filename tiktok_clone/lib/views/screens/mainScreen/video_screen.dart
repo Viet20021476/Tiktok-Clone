@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/views/screens/authens/video_controller.dart';
+import 'package:tiktok_clone/controllers/video_controller.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
@@ -35,35 +35,35 @@ class VideoScreen extends StatelessWidget {
     );
   }
 
+  buildProfile(String profilePhoto) {
+    return SizedBox(
+      width: 50,
+      height: 50,
+      child: Stack(
+        children: [
+          Positioned(
+              child: Container(
+            width: 50,
+            height: 50,
+            padding: EdgeInsets.all(1.0),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(25)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image(
+                image: NetworkImage(profilePhoto),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ))
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    buildProfile(String profilePhoto) {
-      return SizedBox(
-        width: 50,
-        height: 50,
-        child: Stack(
-          children: [
-            Positioned(
-                child: Container(
-              width: 50,
-              height: 50,
-              padding: EdgeInsets.all(1.0),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image(
-                  image: NetworkImage(profilePhoto),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ))
-          ],
-        ),
-      );
-    }
 
     return Scaffold(
       body: Obx(() {

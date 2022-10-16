@@ -25,6 +25,7 @@ class TextInputField extends StatelessWidget {
             color: Color.fromRGBO(143, 148, 251, 1),
           ),
           border: InputBorder.none),
+      obscureText: isObscure,
     );
   }
 }

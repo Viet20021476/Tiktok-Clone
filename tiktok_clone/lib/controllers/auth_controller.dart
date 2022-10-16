@@ -20,7 +20,6 @@ class AuthController extends GetxController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
-    firebaseAuth.signOut();
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
     ever(_user, setInitialScreen);
