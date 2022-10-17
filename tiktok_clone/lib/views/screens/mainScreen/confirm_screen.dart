@@ -28,7 +28,6 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
       controller = VideoPlayerController.file(widget.videoFile);
@@ -41,7 +40,6 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller.dispose();
   }
@@ -69,7 +67,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width - 20,
                     child: TextInputField(
                       controller: songController,
@@ -78,9 +76,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                       isObscure: false,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width - 20,
                     child: TextInputField(
                       controller: captionController,
@@ -89,13 +87,13 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                       isObscure: false,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                       onPressed: () => uploadVideoController.uploadVideo(
                           songController.text,
                           captionController.text,
                           widget.videoPath),
-                      child: Text(
+                      child: const Text(
                         "Share!",
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ))

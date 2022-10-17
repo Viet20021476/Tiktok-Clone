@@ -16,10 +16,10 @@ var borderColor = Colors.blueGrey;
 
 List pages = [
   VideoScreen(),
-  SearchScreen(),
-  AddVideoScreen(),
-  MessagesScreen(),
-  ProfileScreen(),
+  const SearchScreen(),
+  const AddVideoScreen(),
+  const MessagesScreen(),
+  const ProfileScreen(),
 ];
 
 //firebase

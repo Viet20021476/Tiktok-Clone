@@ -17,11 +17,12 @@ class VideoScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.grey, Colors.white]),
+                gradient:
+                    const LinearGradient(colors: [Colors.grey, Colors.white]),
                 borderRadius: BorderRadius.circular(25)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
@@ -46,7 +47,7 @@ class VideoScreen extends StatelessWidget {
               child: Container(
             width: 50,
             height: 50,
-            padding: EdgeInsets.all(1.0),
+            padding: const EdgeInsets.all(1.0),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(25)),
             child: ClipRRect(
@@ -87,26 +88,26 @@ class VideoScreen extends StatelessWidget {
                         children: [
                           Expanded(
                               child: Container(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: const EdgeInsets.only(left: 20),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(data.userName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold)),
                                 Text(data.caption,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 15, color: Colors.white)),
                                 Row(
                                   children: [
-                                    Icon(Icons.music_note,
+                                    const Icon(Icons.music_note,
                                         size: 15, color: Colors.white),
                                     Text(data.songName,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold))
@@ -134,9 +135,9 @@ class VideoScreen extends StatelessWidget {
                                                     authController.user.uid)
                                                 ? Colors.red
                                                 : Colors.white)),
-                                    SizedBox(height: 8),
+                                    const SizedBox(height: 8),
                                     Text(data.likes.length.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20, color: Colors.white)),
                                   ],
                                 ),
@@ -144,11 +145,11 @@ class VideoScreen extends StatelessWidget {
                                   children: [
                                     InkWell(
                                         onTap: () {},
-                                        child: Icon(Icons.comment,
+                                        child: const Icon(Icons.comment,
                                             size: 40, color: Colors.white)),
-                                    SizedBox(height: 8),
+                                    const SizedBox(height: 8),
                                     Text(data.commentCount.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20, color: Colors.white)),
                                   ],
                                 ),
@@ -156,11 +157,11 @@ class VideoScreen extends StatelessWidget {
                                   children: [
                                     InkWell(
                                         onTap: () {},
-                                        child: Icon(Icons.reply,
+                                        child: const Icon(Icons.reply,
                                             size: 40, color: Colors.white)),
-                                    SizedBox(height: 8),
+                                    const SizedBox(height: 8),
                                     Text(data.shareCount.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20, color: Colors.white)),
                                   ],
                                 ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
-import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class RegisterScreen extends StatefulWidget {
-
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -76,15 +74,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Positioned(
                     top: 30,
                     right: 20,
-                    child: Container(
-                      child: Center(
-                        child: Text(
-                          register,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),
-                        ),
+                    child: Center(
+                      child: Text(
+                        register,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
                 Positioned(
@@ -92,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   left: MediaQuery.of(context).size.width / 2 - 64,
                   child: Stack(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 64,
                         backgroundImage: NetworkImage(
                             'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),

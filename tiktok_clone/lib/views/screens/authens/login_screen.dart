@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -166,7 +164,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Get.to(() => RegisterScreen());
+                        Get.to(() => const RegisterScreen());
                         // Navigator.of(context).pop();
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (context) => RegisterScreen()));

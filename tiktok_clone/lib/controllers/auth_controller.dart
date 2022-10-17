@@ -19,7 +19,6 @@ class AuthController extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
@@ -95,7 +94,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAll(() => LoginScreen());
     } else {
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => const HomeScreen());
     }
   }
 }
