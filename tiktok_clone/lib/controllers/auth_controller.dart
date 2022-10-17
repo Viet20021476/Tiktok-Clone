@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   late Rx<User?> _user;
 
   File? get profilePhoto => _pickedImage.value;
+  User get user => _user.value!;
 
   @override
   void onReady() {
@@ -37,9 +38,9 @@ class AuthController extends GetxController {
 
   //register the user
   void registerUser(
-      String userName, String email, String password, File? image) async {
+      String username, String email, String password, File? image) async {
     try {
-      if (userName.isNotEmpty &&
+      if (username.isNotEmpty &&
           email.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
@@ -49,7 +50,7 @@ class AuthController extends GetxController {
         String downloadURL = await uploadToStorage(image);
         models.User user = models.User(
             email: email,
-            name: userName,
+            name: username,
             uid: userCredential.user!.uid,
             profilePhoto: downloadURL);
         await firestore
