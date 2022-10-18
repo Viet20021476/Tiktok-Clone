@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/video_controller.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/comment_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class VideoScreen extends StatelessWidget {
   VideoScreen({Key? key}) : super(key: key);
@@ -66,8 +68,8 @@ class VideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Obx(() {
         return PageView.builder(
             itemCount: videoController.videoList.length,
@@ -119,55 +121,67 @@ class VideoScreen extends StatelessWidget {
                           Container(
                             width: 100,
                             margin: EdgeInsets.only(top: size.height / 5),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                buildProfile(data.profilePhoto),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          videoController.likeVideo(data.id);
-                                        },
-                                        child: Icon(Icons.favorite,
-                                            size: 40,
-                                            color: data.likes.contains(
-                                                    authController.user.uid)
-                                                ? Colors.red
-                                                : Colors.white)),
-                                    const SizedBox(height: 8),
-                                    Text(data.likes.length.toString(),
-                                        style: const TextStyle(
-                                            fontSize: 20, color: Colors.white)),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {},
-                                        child: const Icon(Icons.comment,
-                                            size: 40, color: Colors.white)),
-                                    const SizedBox(height: 8),
-                                    Text(data.commentCount.toString(),
-                                        style: const TextStyle(
-                                            fontSize: 20, color: Colors.white)),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {},
-                                        child: const Icon(Icons.reply,
-                                            size: 40, color: Colors.white)),
-                                    const SizedBox(height: 8),
-                                    Text(data.shareCount.toString(),
-                                        style: const TextStyle(
-                                            fontSize: 20, color: Colors.white)),
-                                  ],
-                                ),
-                                CircleAnimation(
-                                    child: buildMusicAlbum(data.profilePhoto))
-                              ],
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  buildProfile(data.profilePhoto),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                          onTap: () {
+                                            videoController.likeVideo(data.id);
+                                          },
+                                          child: Icon(
+                                              FontAwesomeIcons.solidHeart,
+                                              size: 40,
+                                              color: data.likes.contains(
+                                                      authController.user.uid)
+                                                  ? Colors.red
+                                                  : Colors.white)),
+                                      const SizedBox(height: 8),
+                                      Text(data.likes.length.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white)),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                          onTap: () {
+                                            showCommentBottomSheet(
+                                                context, data.id);
+                                          },
+                                          child: const Icon(Icons.message,
+                                              size: 40, color: Colors.white)),
+                                      const SizedBox(height: 8),
+                                      Text(data.commentCount.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white)),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                          onTap: () {},
+                                          child: const Icon(
+                                              FontAwesomeIcons.share,
+                                              size: 40,
+                                              color: Colors.white)),
+                                      const SizedBox(height: 8),
+                                      Text(data.shareCount.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white)),
+                                    ],
+                                  ),
+                                  CircleAnimation(
+                                      child: buildMusicAlbum(data.profilePhoto))
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -179,5 +193,19 @@ class VideoScreen extends StatelessWidget {
             });
       }),
     );
+  }
+
+  void showCommentBottomSheet(BuildContext context, String id) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return CommentScreen(
+            id: id,
+          );
+        });
   }
 }

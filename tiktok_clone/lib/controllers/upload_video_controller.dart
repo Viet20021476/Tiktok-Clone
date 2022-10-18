@@ -6,10 +6,9 @@ import 'package:tiktok_clone/models/video.dart';
 import 'package:video_compress/video_compress.dart';
 
 class UploadVideoController extends GetxController {
-
   _compressVideo(String videoPath) async {
-    final compressedVideo = await VideoCompress.compressVideo(
-        videoPath, quality: VideoQuality.MediumQuality);
+    final compressedVideo = await VideoCompress.compressVideo(videoPath,
+        quality: VideoQuality.MediumQuality);
     return compressedVideo!.file;
   }
 
@@ -39,10 +38,9 @@ class UploadVideoController extends GetxController {
 
   uploadVideo(String songName, String caption, String videoPath) async {
     try {
-      String uid = firebaseAuth.currentUser!.uid;
-      DocumentSnapshot userDoc = await firestore.collection("users")
-          .doc(uid)
-          .get();
+      String uid = authController.user.uid;
+      DocumentSnapshot userDoc =
+          await firestore.collection("users").doc(uid).get();
 
       var allDocs = await firestore.collection("videos").get();
       int len = allDocs.docs.length;
@@ -71,7 +69,6 @@ class UploadVideoController extends GetxController {
       Get.back();
     } catch (e) {
       Get.snackbar("Error uploading video", e.toString());
-  
     }
   }
 }
