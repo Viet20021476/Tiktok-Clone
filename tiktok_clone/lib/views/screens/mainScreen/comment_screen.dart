@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class CommentScreen extends StatelessWidget {
+class CommentScreen extends StatefulWidget {
   final String id;
 
   CommentScreen({super.key, required this.id});
-  final TextEditingController commentTextController = TextEditingController();
+  static TextEditingController commentTextController = TextEditingController();
+
+  @override
+  State<CommentScreen> createState() => _CommentScreenState();
+}
+
+class _CommentScreenState extends State<CommentScreen> {
+  var sendButtonVisible = true.obs;
+
   CommentController commentController = Get.put(CommentController());
 
   @override
   Widget build(BuildContext context) {
-    commentController.updatePostId(id);
+    commentController.updatePostId(widget.id);
+    commentController.getProfilePhoto();
     return Obx(() {
       return SingleChildScrollView(
         child: Container(
@@ -21,6 +31,12 @@ class CommentScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
+                Container(
+                  height: 30,
+                  child: Center(
+                      child: Text(
+                          '${commentController.commentList.length} comments')),
+                ),
                 Expanded(
                     child: ListView.builder(
                         shrinkWrap: true,
@@ -41,8 +57,8 @@ class CommentScreen extends StatelessWidget {
                                       comment.username,
                                       style: const TextStyle(
                                         fontSize: 16,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   ],
@@ -54,8 +70,8 @@ class CommentScreen extends StatelessWidget {
                                         comment.comment,
                                         style: const TextStyle(
                                           fontSize: 14,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                     ),
@@ -70,7 +86,7 @@ class CommentScreen extends StatelessWidget {
                                       .format(comment.datePublished.toDate()),
                                   style: const TextStyle(
                                     fontSize: 12,
-                                    color: Colors.black,
+                                    color: Colors.black87,
                                   ),
                                 ),
                                 const SizedBox(
@@ -104,47 +120,82 @@ class CommentScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: ListTile(
-                    title: TextField(
-                      controller: commentTextController,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                      decoration: const InputDecoration(
-                        labelText: 'Comment',
-                        labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.red,
+                      CircleAvatar(
+                        radius: 18,
+                        backgroundColor: Colors.black,
+                        backgroundImage:
+                            NetworkImage(commentController.userPhoto),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          onTap: () {
+                            print('hi');
+                          },
+                          textInputAction: TextInputAction.done,
+                          controller: CommentScreen.commentTextController,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white24,
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 4),
+                            hintText: 'Add comment',
+                            hintStyle: TextStyle(
+                              fontSize: 13,
+                              color: Colors.black38,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(style: BorderStyle.none),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(style: BorderStyle.none),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
                           ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Visibility(
+                        visible: sendButtonVisible.value,
+                        child: TextButton(
+                          onPressed: () {
+                            commentController.postComment(
+                                CommentScreen.commentTextController.text);
+                            CommentScreen.commentTextController.clear();
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            // sendButtonVisible.value = false;
+                          },
+                          child: const Text(
+                            'Send',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    trailing: TextButton(
-                      onPressed: () {
-                        commentController
-                            .postComment(commentTextController.text);
-                      },
-                      child: const Text(
-                        'Send',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
                 ),
+                SizedBox(
+                  height: 5,
+                )
               ],
             )),
       );
