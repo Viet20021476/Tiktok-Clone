@@ -154,8 +154,11 @@ class VideoScreen extends StatelessWidget {
                                             showCommentBottomSheet(
                                                 context, data.id);
                                           },
-                                          child: const Icon(Icons.message,
-                                              size: 40, color: Colors.white)),
+                                          child: const ImageIcon(
+                                              AssetImage(
+                                                  'assets/my-icons/comment.png'),
+                                              size: 40,
+                                              color: Colors.white)),
                                       const SizedBox(height: 8),
                                       Text(data.commentCount.toString(),
                                           style: const TextStyle(
@@ -167,8 +170,9 @@ class VideoScreen extends StatelessWidget {
                                     children: [
                                       InkWell(
                                           onTap: () {},
-                                          child: const Icon(
-                                              FontAwesomeIcons.share,
+                                          child: const ImageIcon(
+                                              AssetImage(
+                                                  'assets/my-icons/share.png'),
                                               size: 40,
                                               color: Colors.white)),
                                       const SizedBox(height: 8),

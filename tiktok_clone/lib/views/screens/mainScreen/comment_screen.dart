@@ -16,7 +16,7 @@ class CommentScreen extends StatefulWidget {
 }
 
 class _CommentScreenState extends State<CommentScreen> {
-  var sendButtonVisible = true.obs;
+  var sendButtonVisible = false.obs;
 
   CommentController commentController = Get.put(CommentController());
 
@@ -105,18 +105,29 @@ class _CommentScreenState extends State<CommentScreen> {
                               onTap: () {
                                 commentController.likeComment(comment.id);
                               },
-                              child: Icon(
-                                Icons.favorite,
-                                size: 25,
-                                color: !comment.likes
-                                        .contains(authController.user.uid)
-                                    ? Colors.white
-                                    : Colors.red,
-                              ),
+                              child: !comment.likes
+                                      .contains(authController.user.uid)
+                                  ? ImageIcon(
+                                      AssetImage('assets/my-icons/heart.png'),
+                                      size: 25,
+                                      color: Colors.black,
+                                    )
+                                  : ImageIcon(
+                                      AssetImage(
+                                          'assets/my-icons/red_heart.png'),
+                                      size: 25,
+                                    ),
                             ),
                           );
                         }))),
-                const Divider(),
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(
+                              width: 1,
+                              color: Color.fromARGB(255, 233, 234, 235)))),
+                ),
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -136,8 +147,12 @@ class _CommentScreenState extends State<CommentScreen> {
                       ),
                       Expanded(
                         child: TextField(
-                          onTap: () {
-                            print('hi');
+                          onChanged: (value) {
+                            if (value != '') {
+                              sendButtonVisible.value = true;
+                            } else {
+                              sendButtonVisible.value = false;
+                            }
                           },
                           textInputAction: TextInputAction.done,
                           controller: CommentScreen.commentTextController,
@@ -148,7 +163,7 @@ class _CommentScreenState extends State<CommentScreen> {
                           decoration: InputDecoration(
                             isDense: true,
                             filled: true,
-                            fillColor: Colors.white24,
+                            fillColor: Colors.black12,
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 4),
                             hintText: 'Add comment',
@@ -173,21 +188,37 @@ class _CommentScreenState extends State<CommentScreen> {
                       ),
                       Visibility(
                         visible: sendButtonVisible.value,
-                        child: TextButton(
-                          onPressed: () {
+                        child: InkWell(
+                          onTap: () {
                             commentController.postComment(
                                 CommentScreen.commentTextController.text);
                             CommentScreen.commentTextController.clear();
                             FocusScope.of(context).requestFocus(FocusNode());
-                            // sendButtonVisible.value = false;
+                            sendButtonVisible.value = false;
                           },
-                          child: const Text(
-                            'Send',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          ),
+                          child: Container(
+                              width: 28,
+                              height: 28,
+                              child: Stack(children: <Widget>[
+                                Positioned(
+                                    top: 1.1668000221252441,
+                                    left: 1.1664999723434448,
+                                    child: Image.asset(
+                                      'assets/my-icons/post.png',
+                                    )),
+                                Positioned(
+                                    top: 7.388912200927734,
+                                    left: 7.632322788238525,
+                                    child: Image.asset(
+                                      'assets/my-icons/post_1.png',
+                                    )),
+                              ])),
+                        ),
+                      ),
+                      Visibility(
+                        visible: sendButtonVisible.value,
+                        child: SizedBox(
+                          width: 10,
                         ),
                       ),
                     ],
