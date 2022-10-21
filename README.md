@@ -42,5 +42,7 @@
 
 ### Tuần 5: Thêm các chức năng: Đăng nhập, đăng kí với firebase; chức năng tải video lên firebase
 ### Tuần 6: Thêm chức năng: gọi video từ firebase và hiển thị video 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/78079771/197146087-c771013f-ef3d-457b-bb98-4c9fca1e0bf0.gif)
+
 ### Tuần 7: Thêm chức năng: bình luận trong video, like video, like bình luận
 
