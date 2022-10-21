@@ -40,7 +40,9 @@
 </tr>
 </table>
 
-### Tuần 5: Thêm các chức năng: Đăng nhập, đăng kí với firebase; chức năng tải video lên firebase
+### Tuần 5:  Thêm các chức năng: Đăng nhập, đăng kí với firebase; chức năng tải video lên firebase
+https://user-images.githubusercontent.com/78094729/197239539-c883dc0c-0606-4473-9ce5-43fb728adfc1.mp4
+
 ### Tuần 6: Thêm chức năng: gọi video từ firebase và hiển thị video 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/78079771/197148738-1a768fc2-a0d0-47d4-a98e-fb08a88c8046.gif)
 ### Tuần 7: Thêm chức năng: bình luận trong video, like video, like bình luận
