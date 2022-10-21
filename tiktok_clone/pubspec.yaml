@@ -49,6 +49,8 @@ dependencies:
   video_compress: ^3.1.0
   timeago: ^3.3.0
   font_awesome_flutter: ^10.2.1
+  integration_test:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

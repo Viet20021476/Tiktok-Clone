@@ -201,7 +201,7 @@ class VideoScreen extends StatelessWidget {
 
   void showCommentBottomSheet(BuildContext context, String id) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
         isScrollControlled: true,

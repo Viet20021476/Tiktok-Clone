@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -8,6 +7,7 @@ import 'package:timeago/timeago.dart' as timeago;
 class CommentScreen extends StatefulWidget {
   final String id;
 
+  // ignore: prefer_const_constructors_in_immutables
   CommentScreen({super.key, required this.id});
   static TextEditingController commentTextController = TextEditingController();
 
@@ -26,12 +26,12 @@ class _CommentScreenState extends State<CommentScreen> {
     commentController.getProfilePhoto();
     return Obx(() {
       return SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 30,
                   child: Center(
                       child: Text(
@@ -107,12 +107,12 @@ class _CommentScreenState extends State<CommentScreen> {
                               },
                               child: !comment.likes
                                       .contains(authController.user.uid)
-                                  ? ImageIcon(
+                                  ? const ImageIcon(
                                       AssetImage('assets/my-icons/heart.png'),
                                       size: 25,
                                       color: Colors.black,
                                     )
-                                  : ImageIcon(
+                                  : const ImageIcon(
                                       AssetImage(
                                           'assets/my-icons/red_heart.png'),
                                       size: 25,
@@ -122,7 +122,7 @@ class _CommentScreenState extends State<CommentScreen> {
                         }))),
                 Container(
                   height: 10,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(
                               width: 1,
@@ -133,7 +133,7 @@ class _CommentScreenState extends State<CommentScreen> {
                       bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       CircleAvatar(
@@ -142,7 +142,7 @@ class _CommentScreenState extends State<CommentScreen> {
                         backgroundImage:
                             NetworkImage(commentController.userPhoto),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
@@ -164,26 +164,28 @@ class _CommentScreenState extends State<CommentScreen> {
                             isDense: true,
                             filled: true,
                             fillColor: Colors.black12,
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 4),
                             hintText: 'Add comment',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               fontSize: 13,
                               color: Colors.black38,
                               fontWeight: FontWeight.w400,
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(style: BorderStyle.none),
+                              borderSide:
+                                  const BorderSide(style: BorderStyle.none),
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(style: BorderStyle.none),
+                              borderSide:
+                                  const BorderSide(style: BorderStyle.none),
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Visibility(
@@ -196,7 +198,7 @@ class _CommentScreenState extends State<CommentScreen> {
                             FocusScope.of(context).requestFocus(FocusNode());
                             sendButtonVisible.value = false;
                           },
-                          child: Container(
+                          child: SizedBox(
                               width: 28,
                               height: 28,
                               child: Stack(children: <Widget>[
@@ -217,14 +219,14 @@ class _CommentScreenState extends State<CommentScreen> {
                       ),
                       Visibility(
                         visible: sendButtonVisible.value,
-                        child: SizedBox(
+                        child: const SizedBox(
                           width: 10,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 )
               ],
