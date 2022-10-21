@@ -40,3 +40,7 @@
 </tr>
 </table>
 
+### Tuần 5: Thêm các chức năng: Đăng nhập, đăng kí với firebase; chức năng tải video lên firebase
+### Tuần 6: Thêm chức năng: gọi video từ firebase và hiển thị video 
+### Tuần 7: Thêm chức năng: bình luận trong video, like video, like bình luận
+
