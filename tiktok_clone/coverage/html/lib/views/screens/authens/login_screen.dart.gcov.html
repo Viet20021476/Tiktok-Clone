@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib\views\screens\authens\login_screen.dart</title>
+  <title>LCOV - lcov.info - lib/views/screens/authens/login_screen.dart</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -19,7 +19,7 @@
         <table cellpadding=1 border=0 width="100%">
           <tr>
             <td width="10%" class="headerItem">Current view:</td>
-            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">lib\views\screens\authens\login_screen.dart</a> - login_screen.dart<span style="font-size: 80%;"> (source / <a href="login_screen.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">lib/views/screens/authens</a> - login_screen.dart<span style="font-size: 80%;"> (source / <a href="login_screen.dart.func-sort-c.html">functions</a>)</span></td>
             <td width="5%"></td>
             <td width="15%"></td>
             <td width="10%" class="headerCovTableHead">Hit</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Fri Oct 21 12:09:31 2022</td>
+            <td class="headerValue">2022-10-17 23:31:36</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -62,8 +62,8 @@
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>            : import 'package:flutter/material.dart';</a>
 <a name="2"><span class="lineNum">       2 </span>            : import 'package:get/get.dart';</a>
-<a name="3"><span class="lineNum">       3 </span>            : import 'package:tiktok_clone/constants.dart';</a>
-<a name="4"><span class="lineNum">       4 </span>            : import 'package:tiktok_clone/views/screens/authens/register_screen.dart';</a>
+<a name="3"><span class="lineNum">       3 </span>            : import 'package:tiktok_clone/views/screens/authens/register_screen.dart';</a>
+<a name="4"><span class="lineNum">       4 </span>            : import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';</a>
 <a name="5"><span class="lineNum">       5 </span>            : import 'package:tiktok_clone/views/widgets/text_input_field.dart';</a>
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            : class LoginScreen extends StatelessWidget {</a>
@@ -168,89 +168,87 @@
 <a name="106"><span class="lineNum">     106 </span><span class="lineCov">          1 :                         controller: emailController,</span></a>
 <a name="107"><span class="lineNum">     107 </span>            :                         icon: Icons.email,</a>
 <a name="108"><span class="lineNum">     108 </span>            :                         labelText: 'Email',</a>
-<a name="109"><span class="lineNum">     109 </span>            :                         isObscure: false,</a>
-<a name="110"><span class="lineNum">     110 </span>            :                       ),</a>
-<a name="111"><span class="lineNum">     111 </span>            :                     ),</a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">          1 :                     Container(</span></a>
-<a name="113"><span class="lineNum">     113 </span>            :                       padding: const EdgeInsets.all(8.0),</a>
-<a name="114"><span class="lineNum">     114 </span>            :                       decoration: const BoxDecoration(</a>
-<a name="115"><span class="lineNum">     115 </span>            :                           border: Border(</a>
-<a name="116"><span class="lineNum">     116 </span>            :                               bottom: BorderSide(</a>
-<a name="117"><span class="lineNum">     117 </span>            :                                   color: Color.fromARGB(255, 240, 234, 234)))),</a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">          1 :                       child: TextInputField(</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          1 :                         controller: passwordController,</span></a>
-<a name="120"><span class="lineNum">     120 </span>            :                         icon: Icons.lock,</a>
-<a name="121"><span class="lineNum">     121 </span>            :                         labelText: 'Password',</a>
-<a name="122"><span class="lineNum">     122 </span>            :                         isObscure: true,</a>
-<a name="123"><span class="lineNum">     123 </span>            :                       ),</a>
-<a name="124"><span class="lineNum">     124 </span>            :                     )</a>
-<a name="125"><span class="lineNum">     125 </span>            :                   ]),</a>
-<a name="126"><span class="lineNum">     126 </span>            :                 ),</a>
-<a name="127"><span class="lineNum">     127 </span>            :                 const SizedBox(</a>
-<a name="128"><span class="lineNum">     128 </span>            :                   height: 30,</a>
-<a name="129"><span class="lineNum">     129 </span>            :                 ),</a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">          1 :                 InkWell(</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineNoCov">          0 :                   onTap: () {</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineNoCov">          0 :                     authController.loginUser(</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineNoCov">          0 :                         emailController.text, passwordController.text);</span></a>
-<a name="134"><span class="lineNum">     134 </span>            :                   },</a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">          1 :                   child: Container(</span></a>
-<a name="136"><span class="lineNum">     136 </span>            :                     height: 50,</a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">          1 :                     decoration: BoxDecoration(</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">          1 :                       borderRadius: BorderRadius.circular(10),</span></a>
-<a name="139"><span class="lineNum">     139 </span>            :                       gradient: const LinearGradient(colors: [</a>
-<a name="140"><span class="lineNum">     140 </span>            :                         Color.fromRGBO(143, 148, 251, 1),</a>
-<a name="141"><span class="lineNum">     141 </span>            :                         Color.fromRGBO(143, 148, 251, .6),</a>
-<a name="142"><span class="lineNum">     142 </span>            :                       ]),</a>
-<a name="143"><span class="lineNum">     143 </span>            :                     ),</a>
-<a name="144"><span class="lineNum">     144 </span>            :                     child: const Center(</a>
-<a name="145"><span class="lineNum">     145 </span>            :                       child: Text(</a>
-<a name="146"><span class="lineNum">     146 </span>            :                         &quot;Login&quot;,</a>
-<a name="147"><span class="lineNum">     147 </span>            :                         style: TextStyle(</a>
-<a name="148"><span class="lineNum">     148 </span>            :                             color: Colors.white, fontWeight: FontWeight.bold),</a>
-<a name="149"><span class="lineNum">     149 </span>            :                       ),</a>
-<a name="150"><span class="lineNum">     150 </span>            :                     ),</a>
-<a name="151"><span class="lineNum">     151 </span>            :                   ),</a>
-<a name="152"><span class="lineNum">     152 </span>            :                 ),</a>
-<a name="153"><span class="lineNum">     153 </span>            :                 const SizedBox(</a>
-<a name="154"><span class="lineNum">     154 </span>            :                   height: 15,</a>
-<a name="155"><span class="lineNum">     155 </span>            :                 ),</a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">          1 :                 Row(</span></a>
-<a name="157"><span class="lineNum">     157 </span>            :                   mainAxisAlignment: MainAxisAlignment.spaceAround,</a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">          1 :                   children: [</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">          1 :                     InkWell(</span></a>
-<a name="160"><span class="lineNum">     160 </span>            :                       child: const Text(</a>
-<a name="161"><span class="lineNum">     161 </span>            :                         'Register',</a>
-<a name="162"><span class="lineNum">     162 </span>            :                         style: TextStyle(</a>
-<a name="163"><span class="lineNum">     163 </span>            :                           color: Color.fromRGBO(143, 148, 251, 1),</a>
-<a name="164"><span class="lineNum">     164 </span>            :                         ),</a>
-<a name="165"><span class="lineNum">     165 </span>            :                       ),</a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineNoCov">          0 :                       onTap: () {</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineNoCov">          0 :                         Get.to(() =&gt; const RegisterScreen());</span></a>
-<a name="168"><span class="lineNum">     168 </span>            :                         // Navigator.of(context).pop();</a>
-<a name="169"><span class="lineNum">     169 </span>            :                         // Navigator.of(context).push(MaterialPageRoute(</a>
-<a name="170"><span class="lineNum">     170 </span>            :                         //     builder: (context) =&gt; RegisterScreen()));</a>
-<a name="171"><span class="lineNum">     171 </span>            :                       },</a>
-<a name="172"><span class="lineNum">     172 </span>            :                     ),</a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">          1 :                     InkWell(</span></a>
-<a name="174"><span class="lineNum">     174 </span>            :                       child: const Text(</a>
-<a name="175"><span class="lineNum">     175 </span>            :                         'Forgot password?',</a>
-<a name="176"><span class="lineNum">     176 </span>            :                         style: TextStyle(</a>
-<a name="177"><span class="lineNum">     177 </span>            :                           color: Color.fromRGBO(143, 148, 251, 1),</a>
-<a name="178"><span class="lineNum">     178 </span>            :                         ),</a>
-<a name="179"><span class="lineNum">     179 </span>            :                       ),</a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineNoCov">          0 :                       onTap: () {},</span></a>
-<a name="181"><span class="lineNum">     181 </span>            :                     ),</a>
-<a name="182"><span class="lineNum">     182 </span>            :                   ],</a>
-<a name="183"><span class="lineNum">     183 </span>            :                 )</a>
-<a name="184"><span class="lineNum">     184 </span>            :               ],</a>
-<a name="185"><span class="lineNum">     185 </span>            :             ),</a>
-<a name="186"><span class="lineNum">     186 </span>            :           )</a>
-<a name="187"><span class="lineNum">     187 </span>            :         ]),</a>
-<a name="188"><span class="lineNum">     188 </span>            :       )),</a>
-<a name="189"><span class="lineNum">     189 </span>            :     );</a>
-<a name="190"><span class="lineNum">     190 </span>            :   }</a>
-<a name="191"><span class="lineNum">     191 </span>            : }</a>
+<a name="109"><span class="lineNum">     109 </span>            :                       ),</a>
+<a name="110"><span class="lineNum">     110 </span>            :                     ),</a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">          1 :                     Container(</span></a>
+<a name="112"><span class="lineNum">     112 </span>            :                       padding: const EdgeInsets.all(8.0),</a>
+<a name="113"><span class="lineNum">     113 </span>            :                       decoration: const BoxDecoration(</a>
+<a name="114"><span class="lineNum">     114 </span>            :                           border: Border(</a>
+<a name="115"><span class="lineNum">     115 </span>            :                               bottom: BorderSide(</a>
+<a name="116"><span class="lineNum">     116 </span>            :                                   color: Color.fromARGB(255, 240, 234, 234)))),</a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          1 :                       child: TextInputField(</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">          1 :                         controller: passwordController,</span></a>
+<a name="119"><span class="lineNum">     119 </span>            :                         icon: Icons.lock,</a>
+<a name="120"><span class="lineNum">     120 </span>            :                         labelText: 'Password',</a>
+<a name="121"><span class="lineNum">     121 </span>            :                       ),</a>
+<a name="122"><span class="lineNum">     122 </span>            :                     )</a>
+<a name="123"><span class="lineNum">     123 </span>            :                   ]),</a>
+<a name="124"><span class="lineNum">     124 </span>            :                 ),</a>
+<a name="125"><span class="lineNum">     125 </span>            :                 const SizedBox(</a>
+<a name="126"><span class="lineNum">     126 </span>            :                   height: 30,</a>
+<a name="127"><span class="lineNum">     127 </span>            :                 ),</a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">          1 :                 InkWell(</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineNoCov">          0 :                   onTap: () {</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :                     Navigator.of(context).push(MaterialPageRoute(</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineNoCov">          0 :                         builder: (context) =&gt; const HomeScreen()));</span></a>
+<a name="132"><span class="lineNum">     132 </span>            :                   },</a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          1 :                   child: Container(</span></a>
+<a name="134"><span class="lineNum">     134 </span>            :                     height: 50,</a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">          1 :                     decoration: BoxDecoration(</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">          1 :                       borderRadius: BorderRadius.circular(10),</span></a>
+<a name="137"><span class="lineNum">     137 </span>            :                       gradient: const LinearGradient(colors: [</a>
+<a name="138"><span class="lineNum">     138 </span>            :                         Color.fromRGBO(143, 148, 251, 1),</a>
+<a name="139"><span class="lineNum">     139 </span>            :                         Color.fromRGBO(143, 148, 251, .6),</a>
+<a name="140"><span class="lineNum">     140 </span>            :                       ]),</a>
+<a name="141"><span class="lineNum">     141 </span>            :                     ),</a>
+<a name="142"><span class="lineNum">     142 </span>            :                     child: const Center(</a>
+<a name="143"><span class="lineNum">     143 </span>            :                       child: Text(</a>
+<a name="144"><span class="lineNum">     144 </span>            :                         &quot;Login&quot;,</a>
+<a name="145"><span class="lineNum">     145 </span>            :                         style: TextStyle(</a>
+<a name="146"><span class="lineNum">     146 </span>            :                             color: Colors.white, fontWeight: FontWeight.bold),</a>
+<a name="147"><span class="lineNum">     147 </span>            :                       ),</a>
+<a name="148"><span class="lineNum">     148 </span>            :                     ),</a>
+<a name="149"><span class="lineNum">     149 </span>            :                   ),</a>
+<a name="150"><span class="lineNum">     150 </span>            :                 ),</a>
+<a name="151"><span class="lineNum">     151 </span>            :                 const SizedBox(</a>
+<a name="152"><span class="lineNum">     152 </span>            :                   height: 15,</a>
+<a name="153"><span class="lineNum">     153 </span>            :                 ),</a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">          1 :                 Row(</span></a>
+<a name="155"><span class="lineNum">     155 </span>            :                   mainAxisAlignment: MainAxisAlignment.spaceAround,</a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">          1 :                   children: [</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">          1 :                     InkWell(</span></a>
+<a name="158"><span class="lineNum">     158 </span>            :                       child: const Text(</a>
+<a name="159"><span class="lineNum">     159 </span>            :                         'Register',</a>
+<a name="160"><span class="lineNum">     160 </span>            :                         style: TextStyle(</a>
+<a name="161"><span class="lineNum">     161 </span>            :                           color: Color.fromRGBO(143, 148, 251, 1),</a>
+<a name="162"><span class="lineNum">     162 </span>            :                         ),</a>
+<a name="163"><span class="lineNum">     163 </span>            :                       ),</a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineNoCov">          0 :                       onTap: () {</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineNoCov">          0 :                         Get.to(() =&gt; RegisterScreen());</span></a>
+<a name="166"><span class="lineNum">     166 </span>            :                         // Navigator.of(context).pop();</a>
+<a name="167"><span class="lineNum">     167 </span>            :                         // Navigator.of(context).push(MaterialPageRoute(</a>
+<a name="168"><span class="lineNum">     168 </span>            :                         //     builder: (context) =&gt; RegisterScreen()));</a>
+<a name="169"><span class="lineNum">     169 </span>            :                       },</a>
+<a name="170"><span class="lineNum">     170 </span>            :                     ),</a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          1 :                     InkWell(</span></a>
+<a name="172"><span class="lineNum">     172 </span>            :                       child: const Text(</a>
+<a name="173"><span class="lineNum">     173 </span>            :                         'Forgot password?',</a>
+<a name="174"><span class="lineNum">     174 </span>            :                         style: TextStyle(</a>
+<a name="175"><span class="lineNum">     175 </span>            :                           color: Color.fromRGBO(143, 148, 251, 1),</a>
+<a name="176"><span class="lineNum">     176 </span>            :                         ),</a>
+<a name="177"><span class="lineNum">     177 </span>            :                       ),</a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineNoCov">          0 :                       onTap: () {},</span></a>
+<a name="179"><span class="lineNum">     179 </span>            :                     ),</a>
+<a name="180"><span class="lineNum">     180 </span>            :                   ],</a>
+<a name="181"><span class="lineNum">     181 </span>            :                 )</a>
+<a name="182"><span class="lineNum">     182 </span>            :               ],</a>
+<a name="183"><span class="lineNum">     183 </span>            :             ),</a>
+<a name="184"><span class="lineNum">     184 </span>            :           )</a>
+<a name="185"><span class="lineNum">     185 </span>            :         ]),</a>
+<a name="186"><span class="lineNum">     186 </span>            :       )),</a>
+<a name="187"><span class="lineNum">     187 </span>            :     );</a>
+<a name="188"><span class="lineNum">     188 </span>            :   }</a>
+<a name="189"><span class="lineNum">     189 </span>            : }</a>
 </pre>
       </td>
     </tr>
@@ -259,7 +257,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.15.alpha0w</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
   </table>
   <br>
 
