@@ -44,4 +44,4 @@
 ### Tuần 6: Thêm chức năng: gọi video từ firebase và hiển thị video 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/78079771/197148738-1a768fc2-a0d0-47d4-a98e-fb08a88c8046.gif)
 ### Tuần 7: Thêm chức năng: bình luận trong video, like video, like bình luận
-![](../../Downloads/w7.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/78079771/197149976-af5c69fc-5825-443f-a4b5-267b18db81ff.gif)
