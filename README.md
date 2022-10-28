@@ -48,5 +48,6 @@ https://user-images.githubusercontent.com/78094729/197239822-3b8c88ab-7f4a-4188-
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/78079771/197149976-af5c69fc-5825-443f-a4b5-267b18db81ff.gif)
 #### Ảnh đo mức độ bao phủ 
 <img width="1512" alt="Screen Shot 2022-10-28 at 10 08 58" src="https://user-images.githubusercontent.com/78094729/198492678-6058d94b-724b-431e-abc5-e44b5113e71c.png">
+### Tuần 8: Chia sẻ báo cáo về sử dụng công cụ kiểm thử
 
 
