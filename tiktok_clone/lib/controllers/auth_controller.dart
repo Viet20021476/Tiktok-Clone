@@ -11,7 +11,7 @@ import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
-  late Rx<File?> _pickedImage = Rx<File?>(File('assets/images/clock.png'));
+  late Rx<File?> _pickedImage;
   late Rx<User?> _user;
 
   File? get profilePhoto => _pickedImage.value;
@@ -31,8 +31,8 @@ class AuthController extends GetxController {
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
           'You has sucessfully selected your profile picture');
+      _pickedImage = Rx<File?>(File(pickedImage!.path));
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
   }
 
   //register the user
