@@ -60,7 +60,8 @@ https://user-images.githubusercontent.com/78094729/197239822-3b8c88ab-7f4a-4188-
 ### Tuần 11: 
 
 #### File gif các màn hình
-![](../../Downloads/Untitled.gif)
+![Untitled (1)](https://user-images.githubusercontent.com/78094729/201473477-70594b38-bcba-477d-a8b3-7ea1fcf51163.gif)
+
 #### Backend sử dụng firebase: 
 
 ![image](https://user-images.githubusercontent.com/78079771/201472261-3275a94d-0c87-42bc-ab7d-a2f998ad9201.png)
