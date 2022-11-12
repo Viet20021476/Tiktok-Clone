@@ -46,7 +46,13 @@ https://user-images.githubusercontent.com/78094729/197239822-3b8c88ab-7f4a-4188-
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/78079771/197148738-1a768fc2-a0d0-47d4-a98e-fb08a88c8046.gif)
 ### Tuần 7: Thêm chức năng: bình luận trong video, like video, like bình luận
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/78079771/197149976-af5c69fc-5825-443f-a4b5-267b18db81ff.gif)
+
+Integration test:
+
+![image](https://user-images.githubusercontent.com/78079771/201485682-99dd2213-3a7e-431b-8f0c-7c149e790768.png)
+
 #### Ảnh đo mức độ bao phủ 
+
 <img width="1512" alt="Screen Shot 2022-10-28 at 10 08 58" src="https://user-images.githubusercontent.com/78094729/198492678-6058d94b-724b-431e-abc5-e44b5113e71c.png">
 
 ### Tuần 8 + 9: Chia sẻ báo cáo về sử dụng công cụ kiểm thử
