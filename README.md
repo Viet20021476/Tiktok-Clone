@@ -58,7 +58,10 @@ https://user-images.githubusercontent.com/78094729/197239822-3b8c88ab-7f4a-4188-
 
 ### Tuần 11: 
 
-Backend sử dụng firebase: 
+#### File gif các màn hình
+![ezgif-3-a1742ddb90](https://user-images.githubusercontent.com/78094729/201472688-2e7396c7-d0f8-4e40-8b54-474b70330b4a.gif)
+
+#### Backend sử dụng firebase: 
 
 ![image](https://user-images.githubusercontent.com/78079771/201472261-3275a94d-0c87-42bc-ab7d-a2f998ad9201.png)
 
