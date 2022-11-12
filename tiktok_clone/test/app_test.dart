@@ -34,18 +34,29 @@ void main() {
         find.byKey(const Key('email-field')), 'ductung2002dp@gmail.com');
     await tester.enterText(find.byKey(const Key('password-field')), 'test123');
     await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
+    await tester.tap(find.byKey(const Key('login-button')));
     await tester.pumpAndSettle();
-    await addDelay(5000);
+    await addDelay(15000);
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('my-home')), findsOneWidget);
   });
 
-  testWidgets("enter wrong username, password -> home screen",
+  testWidgets("enter correct username, password -> home screen",
       (WidgetTester tester) async {
     await Firebase.initializeApp().then((value) => {Get.put(AuthController())});
     await tester.pumpWidget(MyApp());
     await tester.enterText(
-        find.byKey(const Key('email-field')), 'ductung203302dp@gmail.com');
+        find.byKey(const Key('email-field')), 'ductung203302dp@gmail.com ');
     await tester.enterText(find.byKey(const Key('password-field')), 'test123');
     await tester.tap(find.byKey(const Key('login-button')));
     await tester.pumpAndSettle();

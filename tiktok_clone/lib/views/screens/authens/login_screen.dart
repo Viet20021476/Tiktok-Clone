@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -103,6 +105,7 @@ class LoginScreen extends StatelessWidget {
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
                       child: TextInputField(
+                        key: const Key('email-field'),
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
@@ -116,6 +119,7 @@ class LoginScreen extends StatelessWidget {
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 240, 234, 234)))),
                       child: TextInputField(
+                        key: const Key('password-field'),
                         controller: passwordController,
                         icon: Icons.lock,
                         labelText: 'Password',
@@ -128,6 +132,7 @@ class LoginScreen extends StatelessWidget {
                   height: 30,
                 ),
                 InkWell(
+                  key: const Key('login-button'),
                   onTap: () {
                     authController.loginUser(
                         emailController.text, passwordController.text);
@@ -157,6 +162,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
+                      key: const Key('register-screen-button'),
                       child: const Text(
                         'Register',
                         style: TextStyle(
@@ -177,7 +183,7 @@ class LoginScreen extends StatelessWidget {
                           color: Color.fromRGBO(143, 148, 251, 1),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () async {},
                     ),
                   ],
                 )

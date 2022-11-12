@@ -4,7 +4,8 @@ import 'package:tiktok_clone/views/screens/mainScreen/profiletab_2.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final String uid;
+  ProfileScreen({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
