@@ -11,6 +11,7 @@ class User {
       required this.email,
       required this.uid,
       required this.profilePhoto});
+
   Map<String, dynamic> toJson() {
     return {
       "name": name,
