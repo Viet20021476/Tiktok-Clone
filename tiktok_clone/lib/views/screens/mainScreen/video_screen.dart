@@ -127,6 +127,9 @@ class VideoScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   buildProfile(data.profilePhoto),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
                                   Column(
                                     children: [
                                       InkWell(
@@ -140,12 +143,15 @@ class VideoScreen extends StatelessWidget {
                                                       authController.user.uid)
                                                   ? Colors.red
                                                   : Colors.white)),
-                                      const SizedBox(height: 8),
+                                      const SizedBox(height: 6),
                                       Text(data.likes.length.toString(),
                                           style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               color: Colors.white)),
                                     ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
                                   ),
                                   Column(
                                     children: [
@@ -159,12 +165,15 @@ class VideoScreen extends StatelessWidget {
                                                   'assets/my-icons/comment.png'),
                                               size: 40,
                                               color: Colors.white)),
-                                      const SizedBox(height: 8),
+                                      const SizedBox(height: 6),
                                       Text(data.commentCount.toString(),
                                           style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               color: Colors.white)),
                                     ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
                                   ),
                                   Column(
                                     children: [
@@ -175,12 +184,15 @@ class VideoScreen extends StatelessWidget {
                                                   'assets/my-icons/share.png'),
                                               size: 40,
                                               color: Colors.white)),
-                                      const SizedBox(height: 8),
+                                      const SizedBox(height: 6),
                                       Text(data.shareCount.toString(),
                                           style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               color: Colors.white)),
                                     ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   CircleAnimation(
                                       child: buildMusicAlbum(data.profilePhoto))
