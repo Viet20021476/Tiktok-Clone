@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/auth_controller.dart';
 import 'package:tiktok_clone/main.dart';
 

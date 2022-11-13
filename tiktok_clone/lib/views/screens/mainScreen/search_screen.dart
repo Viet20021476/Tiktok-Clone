@@ -55,7 +55,11 @@ class SearchScreen extends StatelessWidget {
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (context) =>
                         //         ProfileScreen(uid: user.uid)));
-                        Get.to(ProfileScreen(uid: user.uid));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(uid: user.uid),
+                          ),
+                        );
                       }),
                       child: ListTile(
                         leading: CircleAvatar(

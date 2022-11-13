@@ -1,195 +1,261 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_1.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_2.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   final String uid;
   ProfileScreen({Key? key, required this.uid}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  ProfileController profileController = Get.put(ProfileController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    profileController.updateUserId(widget.uid);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: const Center(
-            child: Text(
-              "Hello",
-              style: TextStyle(color: Colors.black, fontSize: 15),
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: const ImageIcon(
-            AssetImage('assets/my-icons/addaccounticon.png'),
-            color: Colors.black,
-          ),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(right: 12),
-              child: ImageIcon(
-                AssetImage('assets/my-icons/menuicon.png'),
-                color: Colors.black,
-              ),
-            )
-          ],
-        ),
-        body: Column(children: [
-          // Profile photo
-          Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey[200],
-                image: const DecorationImage(
-                    image: NetworkImage(
-                        "https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif"),
-                    fit: BoxFit.fill)),
-          ),
-
-          // user name
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text("@Testuser",
-                style: TextStyle(color: Colors.black, fontSize: 15)),
-          ),
-
-          // number of following, followers, likes
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Column(
-                    children: const [
-                      Text("12",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                      SizedBox(height: 5),
-                      Text("Following",
-                          style: TextStyle(color: Colors.grey, fontSize: 15))
-                    ],
+    return GetBuilder<ProfileController>(
+        init: ProfileController(),
+        builder: (controller) {
+          if (controller.user.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                title: Center(
+                  child: Text(
+                    controller.user['name'],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.black, fontSize: 15),
                   ),
                 ),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: widget.uid == authController.user.uid
+                    ? ImageIcon(
+                        AssetImage('assets/my-icons/addaccounticon.png'),
+                        color: Colors.black,
+                      )
+                    : InkWell(
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                        onTap: () {
+                          Get.back();
+                        },
+                      ),
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10, left: 10),
+                    child: ImageIcon(
+                      AssetImage('assets/my-icons/menuicon.png'),
+                      color: Colors.black,
+                    ),
+                  )
+                ],
               ),
-              Expanded(
-                // ignore: avoid_unnecessary_containers
-                child: Container(
-                  child: Column(
-                    children: const [
-                      Text("34",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                      SizedBox(height: 5),
-                      Text("Followers",
-                          style: TextStyle(color: Colors.grey, fontSize: 15))
-                    ],
-                  ),
+              body: Column(children: [
+                // Profile photo
+                CircleAvatar(
+                  radius: 38,
+                  backgroundImage:
+                      NetworkImage(controller.user['profilePhoto']),
                 ),
-              ),
-              Expanded(
-                  child: Container(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  children: const [
-                    Text("56",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18)),
-                    SizedBox(height: 5),
-                    Text("   Likes   ",
-                        style: TextStyle(color: Colors.grey, fontSize: 15))
+
+                // user name
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text("@" + controller.user['name'],
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 15)),
+                ),
+
+                // number of following, followers, likes
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Column(
+                          children: [
+                            Text(controller.user['following'],
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                            const SizedBox(height: 5),
+                            const Text("Following",
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 15))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      // ignore: avoid_unnecessary_containers
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Text(controller.user['followers'],
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                            const SizedBox(height: 5),
+                            const Text("Followers",
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 15))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        children: [
+                          Text(controller.user['likes'],
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          const SizedBox(height: 5),
+                          const Text("   Likes   ",
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 15))
+                        ],
+                      ),
+                    ))
                   ],
                 ),
-              ))
-            ],
-          ),
 
-          const SizedBox(height: 15),
+                const SizedBox(height: 15),
 
-          // buttons -> edit profile, insta links, bookmark
+                // buttons -> edit profile, insta links, bookmark
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(5)),
-                child: const Text(
-                  "Edit profile",
-                  style: TextStyle(color: Colors.black, fontSize: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 40),
+                        decoration: BoxDecoration(
+                            color: controller.user['isFollowing']
+                                ? Colors.red
+                                : Colors.white,
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          widget.uid == authController.user.uid
+                              ? "Edit profile"
+                              : controller.user['isFollowing']
+                                  ? 'Unfollow'
+                                  : 'Follow',
+                          style: controller.user['isFollowing']
+                              ? TextStyle(color: Colors.white, fontSize: 14)
+                              : TextStyle(color: Colors.black, fontSize: 14),
+                        ),
+                      ),
+                      onTap: () {
+                        if (widget.uid == authController.user.uid) {
+                          authController.signOutUser();
+                        } else {
+                          controller.followUser();
+                        }
+                      },
+                    ),
+                    widget.uid == authController.user.uid
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(11),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: const Icon(Icons.camera_alt,
+                                  color: Colors.black),
+                            ),
+                          )
+                        : Container(),
+                    widget.uid == authController.user.uid
+                        ? Container(
+                            padding: const EdgeInsets.all(11),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey.shade300),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Icon(
+                              Icons.bookmark_border,
+                              color: Colors.grey[800],
+                            ),
+                          )
+                        : Container()
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Container(
-                  padding: const EdgeInsets.all(11),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Icon(Icons.camera_alt, color: Colors.black),
+                const SizedBox(height: 15),
+                // bio
+                Text(
+                  "User bio here",
+                  style: TextStyle(color: Colors.grey[700]),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(11),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(5)),
-                child: Icon(
-                  Icons.bookmark_border,
-                  color: Colors.grey[800],
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: 15),
-          // bio
-          Text(
-            "User bio here",
-            style: TextStyle(color: Colors.grey[700]),
-          ),
 
-          // default tab controller
+                // default tab controller
 
-          const TabBar(tabs: [
-            Tab(
-              icon: Icon(
-                Icons.grid_3x3,
-                color: Colors.black,
-              ),
+                const TabBar(tabs: [
+                  Tab(
+                    icon: Icon(
+                      Icons.grid_3x3,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Tab(
+                    icon: Icon(
+                      Icons.favorite,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Tab(
+                    icon: Icon(
+                      Icons.lock_outline_rounded,
+                      color: Colors.black,
+                    ),
+                  )
+                ]),
+                Expanded(
+                    child: TabBarView(
+                  children: [
+                    FirstTab(
+                      controller: controller,
+                    ),
+                    SecondTab(),
+                    ThirdTab()
+                  ],
+                ))
+              ]),
             ),
-            Tab(
-              icon: Icon(
-                Icons.favorite,
-                color: Colors.black,
-              ),
-            ),
-            Tab(
-              icon: Icon(
-                Icons.lock_outline_rounded,
-                color: Colors.black,
-              ),
-            )
-          ]),
-          const Expanded(
-              child: TabBarView(
-            children: [FirstTab(), SecondTab(), ThirdTab()],
-          ))
-        ]),
-      ),
-    );
+          );
+        });
   }
 }
