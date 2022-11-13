@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/screens/authens/reset_password_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -214,6 +215,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         onTap: () {
+                          authController.setPickedImage(file);
                           Navigator.of(context).pop();
                         },
                       ),
@@ -225,7 +227,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         onTap: () {
-                          print(authController.profilePhoto);
+                          Get.to(ResetPasswordScreen());
                         },
                       ),
                     ],

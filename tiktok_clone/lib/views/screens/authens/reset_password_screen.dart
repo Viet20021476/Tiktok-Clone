@@ -1,22 +1,16 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
-import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
-import 'package:tiktok_clone/views/screens/authens/reset_password_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class ResetPasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
-  LoginScreen({super.key});
+  ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String login = 'Login';
+    String reset = 'Reset';
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -74,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 50),
                   child: Center(
                     child: Text(
-                      login,
+                      reset,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -107,37 +101,20 @@ class LoginScreen extends StatelessWidget {
                               bottom: BorderSide(
                                   color: Color.fromARGB(255, 255, 244, 244)))),
                       child: TextInputField(
-                        key: const Key('email-field'),
                         controller: emailController,
                         icon: Icons.email,
                         labelText: 'Email',
                         isObscure: false,
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromARGB(255, 240, 234, 234)))),
-                      child: TextInputField(
-                        key: const Key('password-field'),
-                        controller: passwordController,
-                        icon: Icons.lock,
-                        labelText: 'Password',
-                        isObscure: true,
-                      ),
-                    )
                   ]),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 InkWell(
-                  key: const Key('login-button'),
                   onTap: () {
-                    authController.loginUser(
-                        emailController.text, passwordController.text);
+                    authController.resetPassword(emailController.text);
                   },
                   child: Container(
                     height: 50,
@@ -150,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        "Login",
+                        "Reset password",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -164,15 +141,14 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      key: const Key('register-screen-button'),
                       child: const Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
                         ),
                       ),
                       onTap: () {
-                        Get.to(() => const RegisterScreen());
+                        Get.back();
                         // Navigator.of(context).pop();
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (context) => RegisterScreen()));
@@ -180,13 +156,13 @@ class LoginScreen extends StatelessWidget {
                     ),
                     InkWell(
                       child: const Text(
-                        'Forgot password?',
+                        'Register',
                         style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
                         ),
                       ),
                       onTap: () async {
-                        Get.to(ResetPasswordScreen());
+                        Get.back();
                       },
                     ),
                   ],

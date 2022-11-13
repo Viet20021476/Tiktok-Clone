@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/auth_controller.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/video_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {

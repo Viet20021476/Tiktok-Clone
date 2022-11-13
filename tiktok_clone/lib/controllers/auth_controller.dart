@@ -16,7 +16,7 @@ class AuthController extends GetxController {
   late Rx<User?> _user;
 
   File get profilePhoto => _pickedImage.value;
-  late File file;
+
   User get user => _user.value!;
 
   @override
@@ -26,8 +26,11 @@ class AuthController extends GetxController {
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
     file = await imageToFile(imageName: 'images/avatar', ext: 'png');
-    Get.put(profilePhoto);
     // ever(_user, setInitialScreen);
+  }
+
+  void setPickedImage(File file) {
+    _pickedImage.value = file;
   }
 
   void pickImage() async {
@@ -36,12 +39,15 @@ class AuthController extends GetxController {
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
           'You has sucessfully selected your profile picture');
-      _pickedImage.value = File(pickedImage.path);
+      setPickedImage(File(pickedImage.path));
     }
   }
 
   void signOutUser() async {
     await firebaseAuth.signOut();
+    if (_user == null) {
+      Get.offAll(() => LoginScreen());
+    }
   }
 
   //register the user
@@ -71,7 +77,7 @@ class AuthController extends GetxController {
         snackbarKey.currentState?.showSnackBar(snackbar);
       } else {
         final snackbar = createSnackbar(
-            'Fail', 'Please enter all the field', ContentType.failure);
+            'Fail', 'Please enter all the field', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
       }
     } on FirebaseAuthException catch (e) {
@@ -104,7 +110,7 @@ class AuthController extends GetxController {
         }
       } else {
         final snackbar = createSnackbar(
-            'On Snap!', 'Please enter all the fields!', ContentType.failure);
+            'On Snap!', 'Please enter all the fields!', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
         // Get.snackbar(
         //   'Error logging in',
@@ -114,6 +120,26 @@ class AuthController extends GetxController {
     } catch (e) {
       final snackbar =
           createSnackbar('Error logging in', e.toString(), ContentType.failure);
+      snackbarKey.currentState?.showSnackBar(snackbar);
+    }
+  }
+
+  void resetPassword(String text) async {
+    try {
+      if (text != '') {
+        await firebaseAuth.sendPasswordResetEmail(email: text);
+        Get.back();
+        final snackbar = createSnackbar('Notice has been sent',
+            'Please check your email!', ContentType.success);
+        snackbarKey.currentState?.showSnackBar(snackbar);
+      } else {
+        final snackbar = createSnackbar('Error reseting password',
+            'Please enter all the field', ContentType.warning);
+        snackbarKey.currentState?.showSnackBar(snackbar);
+      }
+    } catch (e) {
+      final snackbar = createSnackbar(
+          'Error reseting password', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }
