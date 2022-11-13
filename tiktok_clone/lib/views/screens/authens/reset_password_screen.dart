@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
+import 'package:tiktok_clone/views/screens/authens/register_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
@@ -148,7 +150,8 @@ class ResetPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Get.back();
+                        Get.off(LoginScreen());
+                        print(Get.currentRoute);
                         // Navigator.of(context).pop();
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (context) => RegisterScreen()));
@@ -161,8 +164,9 @@ class ResetPasswordScreen extends StatelessWidget {
                           color: Color.fromRGBO(143, 148, 251, 1),
                         ),
                       ),
-                      onTap: () async {
-                        Get.back();
+                      onTap: () {
+                        Get.off(RegisterScreen());
+                        // if (Get.currentRoute )
                       },
                     ),
                   ],
