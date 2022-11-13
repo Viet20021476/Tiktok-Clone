@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('my-home'),
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (idx) {

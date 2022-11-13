@@ -22,11 +22,10 @@ import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 void main() {
   List<User> users = [];
 
-  setUp(() => {
+  setUp(() => {});
 
-  });
-
-  testWidgets('Test to see if CircleAnimation is in Login Screen', (WidgetTester tester) async {
+  testWidgets('Test to see if CircleAnimation is in Login Screen',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     //await Firebase.initializeApp();
 
@@ -34,7 +33,8 @@ void main() {
     expect(find.byType(TextInputField), findsWidgets);
   });
 
-  testWidgets('Test to see if Dialog Option is in Add Video Screen', (WidgetTester tester) async {
+  testWidgets('Test to see if Dialog Option is in Add Video Screen',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     //await Firebase.initializeApp();
 
@@ -42,9 +42,7 @@ void main() {
     expect(find.byType(InkWell), findsWidgets);
   });
 
-  test("Check if users array is empty", () => {
-    expect(users, <User>[])
-  });
+  test("Check if users array is empty", () => {expect(users, <User>[])});
 
   test("Check if users array has 1 element", () {
     users.add(User(name: "", email: "", uid: "", profilePhoto: ""));

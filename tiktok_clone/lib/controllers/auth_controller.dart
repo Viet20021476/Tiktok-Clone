@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -11,18 +12,22 @@ import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
-  late Rx<File?> _pickedImage;
+  late Rx<File> _pickedImage = Rx<File>(file);
   late Rx<User?> _user;
 
-  File? get profilePhoto => _pickedImage.value;
+  File get profilePhoto => _pickedImage.value;
+  late File file;
   User get user => _user.value!;
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
+    await firebaseAuth.signOut();
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
-    ever(_user, setInitialScreen);
+    file = await imageToFile(imageName: 'images/avatar', ext: 'png');
+    Get.put(profilePhoto);
+    // ever(_user, setInitialScreen);
   }
 
   void pickImage() async {
@@ -31,8 +36,12 @@ class AuthController extends GetxController {
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
           'You has sucessfully selected your profile picture');
-      _pickedImage = Rx<File?>(File(pickedImage!.path));
+      _pickedImage.value = File(pickedImage.path);
     }
+  }
+
+  void signOutUser() async {
+    await firebaseAuth.signOut();
   }
 
   //register the user
@@ -57,12 +66,18 @@ class AuthController extends GetxController {
             .doc(userCredential.user!.uid)
             .set(user.toJson());
         Get.back();
-        Get.snackbar('Register successfully', '');
+        final snackbar =
+            createSnackbar('Register successfully', '', ContentType.success);
+        snackbarKey.currentState?.showSnackBar(snackbar);
       } else {
-        Get.snackbar('Fail', 'Please enter all the field');
+        final snackbar = createSnackbar(
+            'Fail', 'Please enter all the field', ContentType.failure);
+        snackbarKey.currentState?.showSnackBar(snackbar);
       }
     } on FirebaseAuthException catch (e) {
-      Get.snackbar('Error creating acount', e.toString());
+      final snackbar = createSnackbar(
+          'Error creating account', e.toString(), ContentType.failure);
+      snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }
 
@@ -82,19 +97,32 @@ class AuthController extends GetxController {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
+        if (_user == null) {
+          Get.offAll(() => LoginScreen());
+        } else {
+          Get.offAll(() => const HomeScreen());
+        }
       } else {
-        Get.snackbar('Error logging in', 'Please enter all the fields');
+        final snackbar = createSnackbar(
+            'On Snap!', 'Please enter all the fields!', ContentType.failure);
+        snackbarKey.currentState?.showSnackBar(snackbar);
+        // Get.snackbar(
+        //   'Error logging in',
+        //   'Please enter all the fields',
+        // );
       }
     } catch (e) {
-      Get.snackbar('Error logging in', e.toString());
+      final snackbar =
+          createSnackbar('Error logging in', e.toString(), ContentType.failure);
+      snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }
 
-  setInitialScreen(User? user) {
-    if (user == null) {
-      Get.offAll(() => LoginScreen());
-    } else {
-      Get.offAll(() => const HomeScreen());
-    }
-  }
+  // setInitialScreen(User? user) {
+  //   if (user == null) {
+  //     Get.offAll(() => LoginScreen());
+  //   } else {
+  //     Get.offAll(() => const HomeScreen());
+  //   }
+  // }
 }
