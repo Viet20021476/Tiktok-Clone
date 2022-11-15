@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/video_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/comment_screen.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,27 +40,32 @@ class VideoScreen extends StatelessWidget {
     );
   }
 
-  buildProfile(String profilePhoto) {
+  buildProfile(String profilePhoto, String uid) {
     return SizedBox(
       width: 50,
       height: 50,
       child: Stack(
         children: [
-          Positioned(
-              child: Container(
-            width: 50,
-            height: 50,
-            padding: const EdgeInsets.all(1.0),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(25)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Image(
-                image: NetworkImage(profilePhoto),
-                fit: BoxFit.cover,
+          InkWell(
+            child: Positioned(
+                child: Container(
+              width: 50,
+              height: 50,
+              padding: const EdgeInsets.all(1.0),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Image(
+                  image: NetworkImage(profilePhoto),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ))
+            )),
+            onTap: () {
+              Get.to(() => ProfileScreen(uid: uid));
+            },
+          )
         ],
       ),
     );
@@ -126,7 +132,7 @@ class VideoScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  buildProfile(data.profilePhoto),
+                                  buildProfile(data.profilePhoto, data.uid),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -135,6 +141,8 @@ class VideoScreen extends StatelessWidget {
                                       InkWell(
                                           onTap: () {
                                             videoController.likeVideo(data.id);
+                                            print(data.uid);
+                                            print('username' + data.userName);
                                           },
                                           child: Icon(
                                               FontAwesomeIcons.solidHeart,
