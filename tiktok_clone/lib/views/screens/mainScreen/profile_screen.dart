@@ -8,7 +8,7 @@ import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
-  ProfileScreen({Key? key, required this.uid}) : super(key: key);
+  const ProfileScreen({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -49,13 +49,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     widget.uid == authController.user.uid
                         ? InkWell(
-                            child: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black,
-                            ),
                             onTap: (() {
                               showSignOutBottomSheet(context, controller);
                             }),
+                            child: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black,
+                            ),
                           )
                         : Container(),
                   ],
@@ -63,12 +63,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: widget.uid == authController.user.uid
-                    ? ImageIcon(
-                        AssetImage('assets/my-icons/addaccounticon.png'),
+                    ? const ImageIcon(
+                        AssetImage('assets/my-icons/friend.png'),
                         color: Colors.black,
+                        size: 200,
                       )
                     : InkWell(
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back,
                           color: Colors.black,
                         ),
@@ -97,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // user name
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text("@" + controller.user['name'],
+                  child: Text('@${controller.user['name']}',
                       style:
                           const TextStyle(color: Colors.black, fontSize: 15)),
                 ),
@@ -187,8 +188,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ? 'Unfollow'
                                   : 'Follow',
                           style: controller.user['isFollowing']
-                              ? TextStyle(color: Colors.white, fontSize: 14)
-                              : TextStyle(color: Colors.black, fontSize: 14),
+                              ? const TextStyle(
+                                  color: Colors.white, fontSize: 14)
+                              : const TextStyle(
+                                  color: Colors.black, fontSize: 14),
                         ),
                       ),
                       onTap: () {
@@ -263,8 +266,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     FirstTab(
                       controller: controller,
                     ),
-                    SecondTab(),
-                    ThirdTab()
+                    const SecondTab(),
+                    const ThirdTab()
                   ],
                 ))
               ]),
@@ -287,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: MediaQuery.of(context).size.height * 0.25,
             width: MediaQuery.of(context).size.width,
             child: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 child: Center(
                     child: Text(
@@ -302,18 +305,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       NetworkImage(controller.user['profilePhoto']),
                 ),
                 title: Text(controller.user['name']),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.check,
                   color: Colors.red,
                 ),
               ),
               ListTile(
-                leading: CircleAvatar(
+                leading: const CircleAvatar(
                   backgroundColor: Colors.black,
                   backgroundImage: NetworkImage(
-                      'https://png.pngtree.com/png-clipart/20190517/original/pngtree-vector-logout-icon-png-image_4255410.jpg'),
+                      'https://cdn-icons-png.flaticon.com/512/3168/3168166.png'),
                 ),
-                title: Text(
+                title: const Text(
                   'Sign out',
                 ),
                 onTap: (() {

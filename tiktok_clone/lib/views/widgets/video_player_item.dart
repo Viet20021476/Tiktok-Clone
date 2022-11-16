@@ -11,6 +11,7 @@ class VideoPlayerItem extends StatefulWidget {
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController videoPlayerController;
+  bool isPlaying = true;
 
   @override
   void initState() {
@@ -36,7 +37,30 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       width: size.width,
       height: size.height,
       decoration: const BoxDecoration(color: Colors.black),
-      child: VideoPlayer(videoPlayerController),
+      child: GestureDetector(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            VideoPlayer(videoPlayerController),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.play_arrow,
+                size: 60,
+                color: Colors.white.withOpacity(isPlaying ? 0 : 0.5),
+              ),
+            )
+          ],
+        ),
+        onTap: () {
+          isPlaying
+              ? videoPlayerController.pause()
+              : videoPlayerController.play();
+          setState(() {
+            isPlaying = !isPlaying;
+          });
+        },
+      ),
     );
   }
 }

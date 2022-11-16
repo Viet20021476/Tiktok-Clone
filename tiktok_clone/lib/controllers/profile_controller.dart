@@ -6,7 +6,7 @@ class ProfileController extends GetxController {
   final Rx<Map<String, dynamic>> _user = Rx<Map<String, dynamic>>({});
   Map<String, dynamic> get user => _user.value;
 
-  Rx<String> _uid = "".obs;
+  final Rx<String> _uid = "".obs;
 
   updateUserId(String uid) {
     _uid.value = uid;
@@ -33,13 +33,6 @@ class ProfileController extends GetxController {
     int followers = 0;
     int following = 0;
     bool isFollowing = false;
-    var t = await firestore
-        .collection('users')
-        .doc(_uid.value)
-        .collection('followers')
-        .doc(authController.user.uid)
-        .get();
-    print(t);
 
     for (var item in myVideos.docs) {
       likes += (item.data()['likes'] as List).length;
@@ -64,7 +57,6 @@ class ProfileController extends GetxController {
         .doc(authController.user.uid)
         .get()
         .then((value) {
-      print(value.exists);
       if (value.exists) {
         isFollowing = true;
       } else {
@@ -81,10 +73,7 @@ class ProfileController extends GetxController {
       'name': name,
       'thumbnails': thumbnails,
     };
-    print('isfollowing 1' + isFollowing.toString());
-
     update();
-    print('isfollowing last' + isFollowing.toString());
   }
 
   followUser() async {

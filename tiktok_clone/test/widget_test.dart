@@ -5,18 +5,11 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tiktok_clone/main.dart';
 import 'package:tiktok_clone/models/user.dart';
-import 'package:tiktok_clone/models/video.dart';
 import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/add_video_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/comment_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/video_screen.dart';
-import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 void main() {

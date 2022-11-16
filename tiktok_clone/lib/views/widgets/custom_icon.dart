@@ -1,9 +1,21 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomIcon extends StatelessWidget {
+class CustomIcon extends StatefulWidget {
+  const CustomIcon({Key? key}) : super(key: key);
+
+  @override
+  State<CustomIcon> createState() => _CustomIconState();
+
+  void setPageId(int pageIdx) {}
+
+  void getPageId() {}
+}
+
+class _CustomIconState extends State<CustomIcon> {
   RxInt pageId = 0.obs;
-  CustomIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

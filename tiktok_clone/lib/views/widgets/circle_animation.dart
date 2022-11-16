@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CircleAnimation extends StatefulWidget {
@@ -31,9 +33,14 @@ class _CircleAnimationState extends State<CircleAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: Tween(begin: 0.0, end: 1.0).animate(controller),
-      child: widget.child,
-    );
+    return AnimatedBuilder(
+        animation: controller,
+        builder: ((context, child) {
+          return Transform.rotate(
+            angle: 2 * pi * controller.value,
+            child: child,
+          );
+        }),
+        child: widget.child);
   }
 }

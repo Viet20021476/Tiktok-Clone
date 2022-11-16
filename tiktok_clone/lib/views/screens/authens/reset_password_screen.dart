@@ -151,7 +151,6 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                       onTap: () {
                         Get.off(LoginScreen());
-                        print(Get.currentRoute);
                         // Navigator.of(context).pop();
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (context) => RegisterScreen()));
@@ -165,7 +164,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Get.off(RegisterScreen());
+                        Get.off(const RegisterScreen());
                         // if (Get.currentRoute )
                       },
                     ),

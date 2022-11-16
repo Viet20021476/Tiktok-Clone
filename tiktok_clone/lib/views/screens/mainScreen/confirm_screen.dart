@@ -54,7 +54,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
       appBar: AppBar(
         elevation: 0.0,
         leading: InkWell(
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.white,
             shadows: [
@@ -69,7 +69,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
             Get.back();
           },
         ),
-        title: Text(
+        title: const Text(
           'Edit your video!!!',
           style: TextStyle(
             fontSize: 16,
@@ -86,17 +86,13 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: Container(
-        child: Center(
-          child: AspectRatio(
-            aspectRatio: controller.value.aspectRatio,
-            child: VideoPlayer(controller),
-          ),
+      body: Center(
+        child: AspectRatio(
+          aspectRatio: controller.value.aspectRatio,
+          child: VideoPlayer(controller),
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (() {
-        print(controller.value.aspectRatio);
-      })),
+      floatingActionButton: FloatingActionButton(onPressed: (() {})),
       // const SizedBox(
       //   height: 30,
       // ),

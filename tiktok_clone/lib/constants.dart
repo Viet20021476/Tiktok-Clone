@@ -22,7 +22,7 @@ final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
 
 List pages = [
-  VideoScreen(),
+  const VideoScreen(),
   SearchScreen(),
   const AddVideoScreen(),
   const MessagesScreen(),
