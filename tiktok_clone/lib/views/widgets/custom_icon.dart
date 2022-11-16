@@ -3,18 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomIcon extends StatefulWidget {
-  const CustomIcon({Key? key}) : super(key: key);
+class CustomIcon extends StatelessWidget {
+  CustomIcon({Key? key}) : super(key: key);
 
-  @override
-  State<CustomIcon> createState() => _CustomIconState();
-
-  void setPageId(int pageIdx) {}
-
-  void getPageId() {}
-}
-
-class _CustomIconState extends State<CustomIcon> {
   RxInt pageId = 0.obs;
 
   @override

@@ -86,11 +86,23 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: Center(
-        child: AspectRatio(
-          aspectRatio: controller.value.aspectRatio,
-          child: VideoPlayer(controller),
-        ),
+      body: Stack(
+        children: [
+          Center(
+            child: AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: VideoPlayer(controller),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.play_arrow,
+              size: 60,
+              color: Colors.white.withOpacity(0.5),
+            ),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: (() {})),
       // const SizedBox(

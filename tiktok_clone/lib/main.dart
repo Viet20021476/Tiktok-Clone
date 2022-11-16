@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: snackbarKey,
       title: 'Tiktok App',
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: backGroundColor,
+        scaffoldBackgroundColor: backGroundColor2,
       ),
       home: LoginScreen(),
     );

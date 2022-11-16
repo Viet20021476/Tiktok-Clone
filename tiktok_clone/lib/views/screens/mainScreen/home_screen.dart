@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  CustomIcon icon = const CustomIcon();
+  CustomIcon icon = CustomIcon();
   int pageIdx = 0;
 
   @override
