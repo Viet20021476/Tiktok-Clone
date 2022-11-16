@@ -12,7 +12,7 @@ import 'package:tiktok_clone/views/screens/mainScreen/home_screen.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
-  late Rx<File> _pickedImage = Rx<File>(file);
+  late final Rx<File> _pickedImage = Rx<File>(file);
   late Rx<User?> _user;
 
   File get profilePhoto => _pickedImage.value;
@@ -26,7 +26,7 @@ class AuthController extends GetxController {
     _user = Rx<User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
     file = await imageToFile(imageName: 'images/avatar', ext: 'png');
-    // ever(_user, setInitialScreen);
+    ever(_user, setInitialScreen);
   }
 
   void setPickedImage(File file) {
@@ -45,9 +45,6 @@ class AuthController extends GetxController {
 
   void signOutUser() async {
     await firebaseAuth.signOut();
-    if (_user == null) {
-      Get.offAll(() => LoginScreen());
-    }
   }
 
   //register the user
@@ -103,11 +100,6 @@ class AuthController extends GetxController {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        if (_user == null) {
-          Get.offAll(() => LoginScreen());
-        } else {
-          Get.offAll(() => const HomeScreen());
-        }
       } else {
         final snackbar = createSnackbar(
             'On Snap!', 'Please enter all the fields!', ContentType.warning);
@@ -144,11 +136,11 @@ class AuthController extends GetxController {
     }
   }
 
-  // setInitialScreen(User? user) {
-  //   if (user == null) {
-  //     Get.offAll(() => LoginScreen());
-  //   } else {
-  //     Get.offAll(() => const HomeScreen());
-  //   }
-  // }
+  setInitialScreen(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => const HomeScreen());
+    }
+  }
 }

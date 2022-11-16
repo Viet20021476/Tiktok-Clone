@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/upload_video_controller.dart';
-import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 import 'package:video_player/video_player.dart';
 
 class ConfirmScreen extends StatefulWidget {
@@ -32,10 +31,13 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     setState(() {
       controller = VideoPlayerController.file(widget.videoFile);
     });
-    controller.initialize();
+    controller.addListener(() {
+      setState(() {});
+    });
     controller.play();
     controller.setVolume(1);
     controller.setLooping(true);
+    controller.initialize();
   }
 
   @override
@@ -47,62 +49,96 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 1.5,
-              child: VideoPlayer(controller),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width - 20,
-                    child: TextInputField(
-                      controller: songController,
-                      labelText: "Song Name",
-                      icon: Icons.music_note,
-                      isObscure: false,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width - 20,
-                    child: TextInputField(
-                      controller: captionController,
-                      labelText: "Caption",
-                      icon: Icons.closed_caption,
-                      isObscure: false,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                      onPressed: () => uploadVideoController.uploadVideo(
-                          songController.text,
-                          captionController.text,
-                          widget.videoPath),
-                      child: const Text(
-                        "Share!",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ))
-                ],
+      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0.0,
+        leading: InkWell(
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                offset: Offset(0.0, 0.0),
+                blurRadius: 3.0,
+                color: Color.fromARGB(255, 0, 0, 0),
               ),
-            )
-          ],
+            ],
+          ),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        title: Text(
+          'Edit your video!!!',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            shadows: <Shadow>[
+              Shadow(
+                offset: Offset(0.0, 0.0),
+                blurRadius: 30.0,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+            ],
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+      ),
+      body: Container(
+        child: Center(
+          child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: VideoPlayer(controller),
+          ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (() {
+        print(controller.value.aspectRatio);
+      })),
+      // const SizedBox(
+      //   height: 30,
+      // ),
+      // SingleChildScrollView(
+      //   scrollDirection: Axis.vertical,
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //     children: [
+      //       Container(
+      //         margin: const EdgeInsets.symmetric(horizontal: 10),
+      //         width: MediaQuery.of(context).size.width - 20,
+      //         child: TextInputField(
+      //           controller: songController,
+      //           labelText: "Song Name",
+      //           icon: Icons.music_note,
+      //           isObscure: false,
+      //         ),
+      //       ),
+      //       const SizedBox(height: 10),
+      //       Container(
+      //         margin: const EdgeInsets.symmetric(horizontal: 10),
+      //         width: MediaQuery.of(context).size.width - 20,
+      //         child: TextInputField(
+      //           controller: captionController,
+      //           labelText: "Caption",
+      //           icon: Icons.closed_caption,
+      //           isObscure: false,
+      //         ),
+      //       ),
+      //       const SizedBox(height: 10),
+      //       ElevatedButton(
+      //           onPressed: () => uploadVideoController.uploadVideo(
+      //               songController.text,
+      //               captionController.text,
+      //               widget.videoPath),
+      //           child: const Text(
+      //             "Share!",
+      //             style: TextStyle(fontSize: 20, color: Colors.white),
+      //           ))
+      //     ],
+      //   ),
+      // )
     );
   }
 }

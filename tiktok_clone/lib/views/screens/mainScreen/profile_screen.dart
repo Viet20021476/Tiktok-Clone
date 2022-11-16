@@ -39,12 +39,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                title: Center(
-                  child: Text(
-                    controller.user['name'],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black, fontSize: 15),
-                  ),
+                centerTitle: true,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      controller.user['name'],
+                      style: const TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                    widget.uid == authController.user.uid
+                        ? InkWell(
+                            child: Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black,
+                            ),
+                            onTap: (() {
+                              showSignOutBottomSheet(context, controller);
+                            }),
+                          )
+                        : Container(),
+                  ],
                 ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
@@ -255,6 +269,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ))
               ]),
             ),
+          );
+        });
+  }
+
+  void showSignOutBottomSheet(
+      BuildContext context, ProfileController controller) {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+            width: MediaQuery.of(context).size.width,
+            child: Column(children: [
+              SizedBox(
+                height: 50,
+                child: Center(
+                    child: Text(
+                  'Change account',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                )),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.black,
+                  backgroundImage:
+                      NetworkImage(controller.user['profilePhoto']),
+                ),
+                title: Text(controller.user['name']),
+                trailing: Icon(
+                  Icons.check,
+                  color: Colors.red,
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.black,
+                  backgroundImage: NetworkImage(
+                      'https://png.pngtree.com/png-clipart/20190517/original/pngtree-vector-logout-icon-png-image_4255410.jpg'),
+                ),
+                title: Text(
+                  'Sign out',
+                ),
+                onTap: (() {
+                  authController.signOutUser();
+                }),
+              ),
+            ]),
           );
         });
   }

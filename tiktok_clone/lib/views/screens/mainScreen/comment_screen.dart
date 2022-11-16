@@ -165,7 +165,7 @@ class _CommentScreenState extends State<CommentScreen> {
                             filled: true,
                             fillColor: Colors.black12,
                             contentPadding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 4),
+                                vertical: 10, horizontal: 10),
                             hintText: 'Add comment',
                             hintStyle: const TextStyle(
                               fontSize: 13,
