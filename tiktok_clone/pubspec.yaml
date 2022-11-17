@@ -55,6 +55,8 @@ dependencies:
     sdk: flutter
   path_provider: ^2.0.11
   expandable_text: ^2.3.0
+  flutter_native_splash: ^2.2.14
+  
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +67,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/my-icons/tiktok.png"
+  image_path: "assets/images/splash.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
