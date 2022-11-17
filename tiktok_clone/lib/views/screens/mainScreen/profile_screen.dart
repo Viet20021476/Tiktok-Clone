@@ -8,7 +8,9 @@ import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
-  const ProfileScreen({Key? key, required this.uid}) : super(key: key);
+  final bool isFromMethod;
+  const ProfileScreen({Key? key, required this.uid, required this.isFromMethod})
+      : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -47,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller.user['name'],
                       style: const TextStyle(color: Colors.black, fontSize: 15),
                     ),
-                    widget.uid == authController.user.uid
+                    widget.uid == authController.user.uid &&
+                            !widget.isFromMethod
                         ? InkWell(
                             onTap: (() {
                               showSignOutBottomSheet(context, controller);
@@ -62,7 +65,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                leading: widget.uid == authController.user.uid
+                leading: widget.uid == authController.user.uid &&
+                        !widget.isFromMethod
                     ? const ImageIcon(
                         AssetImage('assets/my-icons/friend.png'),
                         color: Colors.black,

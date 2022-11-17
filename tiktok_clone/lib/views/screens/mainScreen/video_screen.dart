@@ -70,7 +70,10 @@ class _VideoScreenState extends State<VideoScreen> {
               ),
             ),
             onTap: () {
-              Get.to(() => ProfileScreen(uid: uid));
+              Get.to(() => ProfileScreen(
+                    uid: uid,
+                    isFromMethod: true,
+                  ));
             },
           ),
           Positioned(
@@ -98,6 +101,7 @@ class _VideoScreenState extends State<VideoScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: backGroundColor2,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,

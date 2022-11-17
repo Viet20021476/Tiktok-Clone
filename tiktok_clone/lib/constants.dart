@@ -26,7 +26,10 @@ List pages = [
   SearchScreen(),
   const AddVideoScreen(),
   const MessagesScreen(),
-  ProfileScreen(uid: authController.user.uid),
+  ProfileScreen(
+    uid: authController.user.uid,
+    isFromMethod: false,
+  ),
 ];
 
 createSnackbar(String title, String message, ContentType contentType) {
