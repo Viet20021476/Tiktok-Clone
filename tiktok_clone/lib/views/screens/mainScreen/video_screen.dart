@@ -73,25 +73,24 @@ class _VideoScreenState extends State<VideoScreen> {
             onTap: () async {
               // Get.to(() => VideoScreen());
               // videoPlayerItem.pauseVideo();
-              Get.to(() => ProfileScreen(
-                    uid: uid,
-                    isFromMethod: true,
-                  ));
-              // final checkData = await Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => ProfileScreen(
-              //               uid: uid,
-              //               isFromMethod: true,
-              //             )));
-              // setState(() {
-              //   print(checkData);
-              //   if (checkData != null) {
-              //     // videoPlayerItem.playVideo();
-              //   } else {
-              //     // videoPlayerItem.playVideo();
-              //   }
-              // });
+
+              videoPlayerItem.pauseVideo();
+              print(videoPlayerItem);
+              final checkData = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileScreen(
+                            uid: uid,
+                            isFromMethod: true,
+                          )));
+              print(checkData);
+              if (checkData != null) {
+                videoPlayerItem.playVideo();
+                print(videoPlayerItem);
+              } else {
+                videoPlayerItem.playVideo();
+                print(videoPlayerItem);
+              }
             },
           ),
           Positioned(
@@ -161,6 +160,8 @@ class _VideoScreenState extends State<VideoScreen> {
               final data = videoController.videoList[index];
               VideoPlayerItem videoPlayerItem =
                   VideoPlayerItem(videoUrl: data.videoUrl);
+              print('re create videoplayer item' + videoPlayerItem.toString());
+
               return Stack(
                 children: [
                   videoPlayerItem,

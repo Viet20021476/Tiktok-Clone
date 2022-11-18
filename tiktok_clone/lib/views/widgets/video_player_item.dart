@@ -3,34 +3,47 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
-  const VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  _VideoPlayerItemState _videoPlayerItemState = _VideoPlayerItemState();
 
   @override
-  State<VideoPlayerItem> createState() => _VideoPlayerItemState();
+  State<VideoPlayerItem> createState() => _videoPlayerItemState;
+
+  void pauseVideo() {
+    print('pause' + _videoPlayerItemState.videoPlayerController.toString());
+    _videoPlayerItemState.videoPlayerController?.pause();
+  }
+
+  void playVideo() {
+    print('play' + _videoPlayerItemState.videoPlayerController.toString());
+    _videoPlayerItemState.videoPlayerController?.play();
+  }
 }
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
-  late VideoPlayerController videoPlayerController;
+  late VideoPlayerController? videoPlayerController;
   bool isPlaying = true;
 
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((value) {
-        videoPlayerController.play();
-        videoPlayerController.setVolume(1);
-        videoPlayerController.setLooping(true);
-      });
-    videoPlayerController.addListener(() {
+    videoPlayerController = VideoPlayerController.network(widget.videoUrl);
+    videoPlayerController?.initialize().then((value) {
+      videoPlayerController!.play();
+      videoPlayerController!.setVolume(1);
+      videoPlayerController!.setLooping(true);
+    });
+    videoPlayerController!.addListener(() {
       setState(() {});
     });
+    print('init' + videoPlayerController.toString());
   }
 
   @override
   void dispose() {
+    print('dispose' + videoPlayerController.toString());
     super.dispose();
-    videoPlayerController.dispose();
+    videoPlayerController!.dispose();
   }
 
   @override
@@ -47,8 +60,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           ),
           Center(
             child: AspectRatio(
-                aspectRatio: videoPlayerController.value.aspectRatio,
-                child: VideoPlayer(videoPlayerController)),
+                aspectRatio: videoPlayerController!.value.aspectRatio,
+                child: VideoPlayer(videoPlayerController!)),
           ),
           IconButton(
             onPressed: () {},
@@ -62,8 +75,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       ),
       onTap: () {
         isPlaying
-            ? videoPlayerController.pause()
-            : videoPlayerController.play();
+            ? videoPlayerController!.pause()
+            : videoPlayerController!.play();
         setState(() {
           isPlaying = !isPlaying;
         });
