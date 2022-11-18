@@ -48,7 +48,8 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  buildProfile(String profilePhoto, String uid) {
+  buildProfile(
+      String profilePhoto, String uid, VideoPlayerItem videoPlayerItem) {
     return SizedBox(
       width: 50,
       height: 60,
@@ -69,11 +70,28 @@ class _VideoScreenState extends State<VideoScreen> {
                 ),
               ),
             ),
-            onTap: () {
+            onTap: () async {
+              // Get.to(() => VideoScreen());
+              // videoPlayerItem.pauseVideo();
               Get.to(() => ProfileScreen(
                     uid: uid,
                     isFromMethod: true,
                   ));
+              // final checkData = await Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => ProfileScreen(
+              //               uid: uid,
+              //               isFromMethod: true,
+              //             )));
+              // setState(() {
+              //   print(checkData);
+              //   if (checkData != null) {
+              //     // videoPlayerItem.playVideo();
+              //   } else {
+              //     // videoPlayerItem.playVideo();
+              //   }
+              // });
             },
           ),
           Positioned(
@@ -141,9 +159,11 @@ class _VideoScreenState extends State<VideoScreen> {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               final data = videoController.videoList[index];
+              VideoPlayerItem videoPlayerItem =
+                  VideoPlayerItem(videoUrl: data.videoUrl);
               return Stack(
                 children: [
-                  VideoPlayerItem(videoUrl: data.videoUrl),
+                  videoPlayerItem,
                   Column(
                     children: [
                       const SizedBox(height: 100),
@@ -219,7 +239,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  buildProfile(data.profilePhoto, data.uid),
+                                  buildProfile(data.profilePhoto, data.uid,
+                                      videoPlayerItem),
                                   const SizedBox(
                                     height: 20,
                                   ),

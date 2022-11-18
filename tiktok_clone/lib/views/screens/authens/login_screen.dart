@@ -133,8 +133,8 @@ class LoginScreen extends StatelessWidget {
                 InkWell(
                   key: const Key('login-button'),
                   onTap: () {
-                    authController.loginUser(
-                        emailController.text, passwordController.text);
+                    authController.loginUser(emailController.text.trim(),
+                        passwordController.text.trim());
                   },
                   child: Container(
                     height: 50,

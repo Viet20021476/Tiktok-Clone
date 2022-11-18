@@ -40,6 +40,11 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       child: Stack(
         alignment: Alignment.center,
         children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.black,
+          ),
           Center(
             child: AspectRatio(
                 aspectRatio: videoPlayerController.value.aspectRatio,

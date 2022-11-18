@@ -178,9 +178,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   InkWell(
                     onTap: () {
                       authController.registerUser(
-                          userNameController.text,
-                          emailController.text,
-                          passwordController.text,
+                          userNameController.text.trim(),
+                          emailController.text.trim(),
+                          passwordController.text.trim(),
                           authController.profilePhoto);
                     },
                     child: Container(

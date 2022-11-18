@@ -116,7 +116,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    authController.resetPassword(emailController.text);
+                    authController.resetPassword(emailController.text.trim());
                   },
                   child: Container(
                     height: 50,
