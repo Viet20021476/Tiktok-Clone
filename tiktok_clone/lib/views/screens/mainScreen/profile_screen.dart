@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_1.dart';
@@ -37,9 +38,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return GetBuilder<ProfileController>(
         init: ProfileController(),
         builder: (controller) {
-          if (controller.user.isEmpty) {
-            return const Center(
-              child: CircularProgressIndicator(),
+          if (controller.isLoading) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(color: Colors.white),
+              alignment: Alignment.center,
+              child: Lottie.asset(
+                'assets/my-icons/tiktok_loader.json',
+                width: 120,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
             );
           }
           return DefaultTabController(
@@ -186,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 40),
                         decoration: BoxDecoration(
-                            color: controller.user['isFollowing']
+                            color: !controller.user['isFollowing']
                                 ? Colors.red
                                 : Colors.white,
                             border: Border.all(color: Colors.grey.shade300),
@@ -197,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               : controller.user['isFollowing']
                                   ? 'Unfollow'
                                   : 'Follow',
-                          style: controller.user['isFollowing']
+                          style: !controller.user['isFollowing']
                               ? const TextStyle(
                                   color: Colors.white, fontSize: 14)
                               : const TextStyle(
@@ -206,7 +216,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       onTap: () {
                         if (widget.uid == authController.user.uid) {
-                          authController.signOutUser();
                         } else {
                           controller.followUser();
                         }

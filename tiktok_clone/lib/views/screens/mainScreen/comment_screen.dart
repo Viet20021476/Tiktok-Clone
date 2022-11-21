@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
+import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class CommentScreen extends StatefulWidget {
   final String id;
+  VideoPlayerItem videoPlayerItem;
 
   // ignore: prefer_const_constructors_in_immutables
-  CommentScreen({super.key, required this.id});
+  CommentScreen({super.key, required this.id, required this.videoPlayerItem});
   static TextEditingController commentTextController = TextEditingController();
 
   @override
@@ -44,10 +47,31 @@ class _CommentScreenState extends State<CommentScreen> {
                         itemBuilder: ((context, index) {
                           final comment = commentController.commentList[index];
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.black,
-                              backgroundImage:
-                                  NetworkImage(comment.profilePhoto),
+                            leading: InkWell(
+                              onTap: () async {
+                                widget.videoPlayerItem.pauseVideo();
+                                print(widget.videoPlayerItem);
+                                final checkData = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfileScreen(
+                                              uid: comment.uid,
+                                              isFromMethod: true,
+                                            )));
+                                print(checkData);
+                                if (checkData != null) {
+                                  widget.videoPlayerItem.playVideo();
+                                  print(widget.videoPlayerItem);
+                                } else {
+                                  widget.videoPlayerItem.playVideo();
+                                  print(widget.videoPlayerItem);
+                                }
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Colors.black,
+                                backgroundImage:
+                                    NetworkImage(comment.profilePhoto),
+                              ),
                             ),
                             title: Column(
                               children: [

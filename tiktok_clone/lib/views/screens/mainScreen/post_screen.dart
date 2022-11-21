@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/controllers/upload_video_controller.dart';
 import 'package:video_player/video_player.dart';
 
@@ -23,14 +25,16 @@ class PostScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<PostScreen> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   UploadVideoController uploadVideoController =
       Get.put(UploadVideoController());
   TextEditingController captionController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    captionController.dispose();
+    Get.delete<UploadVideoController>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +127,64 @@ class _MyWidgetState extends State<PostScreen> {
                         captionController.text,
                         widget.videoPath,
                         widget.videoThumbnailUrl);
-                    uploadVideoController.cancelUploadTask();
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Obx(() {
+                            return uploadVideoController.isLoading
+                                ? WillPopScope(
+                                    onWillPop: () async {
+                                      uploadVideoController.cancelUpload();
+                                      return false;
+                                    },
+                                    child: Dialog(
+                                      insetPadding: EdgeInsets.zero,
+                                      elevation: 0,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: Alignment.center,
+                                      child: Scaffold(
+                                        extendBodyBehindAppBar: true,
+                                        appBar: AppBar(
+                                          leading: Container(),
+                                          actions: [
+                                            IconButton(
+                                                onPressed: () {
+                                                  uploadVideoController
+                                                      .cancelUpload();
+                                                },
+                                                icon: Icon(Icons.close))
+                                          ],
+                                          elevation: 0,
+                                          backgroundColor: Colors.transparent,
+                                        ),
+                                        backgroundColor: Colors.transparent,
+                                        body: Center(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                child: Lottie.asset(
+                                                  'assets/my-icons/tiktok_loader.json',
+                                                  width: 120,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              uploadVideoController
+                                                  .buildUploadStatus(),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : SizedBox();
+                          });
+                        });
                   },
                   icon: Icon(Icons.arrow_circle_up),
                   label: const Text(

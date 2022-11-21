@@ -7,6 +7,9 @@ class ProfileController extends GetxController {
   Map<String, dynamic> get user => _user.value;
 
   final Rx<String> _uid = "".obs;
+  String get uid => _uid.value;
+  final Rx<bool> _isLoading = true.obs;
+  bool get isLoading => _isLoading.value;
 
   updateUserId(String uid) {
     _uid.value = uid;
@@ -15,6 +18,7 @@ class ProfileController extends GetxController {
 
   void getUserData() async {
     List<String> thumbnails = [];
+    _isLoading.value = true;
     var myVideos = await firestore
         .collection('videos')
         .where('uid', isEqualTo: _uid.value)
@@ -74,6 +78,7 @@ class ProfileController extends GetxController {
       'thumbnails': thumbnails,
     };
     update();
+    _isLoading.value = false;
   }
 
   followUser() async {

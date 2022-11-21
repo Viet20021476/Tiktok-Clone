@@ -7,11 +7,15 @@ class SearchController extends GetxController {
   final Rx<List<User>> _searchedUsers = Rx<List<User>>([]);
   final Rx<List<int>> _followerCountsList = Rx<List<int>>([]);
 
+  final Rx<bool> _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
+
   List<int> get followerCountsList => _followerCountsList.value;
 
   List<User> get searchedUsers => _searchedUsers.value;
 
   searchUser(String typedUser) async {
+    _isLoading.value = true;
     if (typedUser != '') {
       _searchedUsers.bindStream(firestore
           .collection('users')
@@ -28,6 +32,7 @@ class SearchController extends GetxController {
     } else {
       _searchedUsers.value = [];
     }
+    _isLoading.value = false;
   }
 
   Future<int> getFollowerCount(String uid) async {

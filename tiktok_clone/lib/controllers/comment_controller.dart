@@ -7,6 +7,8 @@ class CommentController extends GetxController {
   String userPhoto = '';
   final Rx<List<Comment>> comments = Rx<List<Comment>>([]);
   List<Comment> get commentList => comments.value;
+  final Rx<bool> _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
 
   String _postId = "";
 

@@ -8,6 +8,10 @@ class VideoController extends GetxController {
 
   List<Video> get videoList => _videoList.value;
 
+  final Rx<List<Video>> _profileVideoList = Rx<List<Video>>([]);
+
+  List<Video> get profileVideoList => _profileVideoList.value;
+
   @override
   void onInit() {
     // Init videoController
@@ -18,6 +22,7 @@ class VideoController extends GetxController {
         .snapshots()
         .map((QuerySnapshot query) {
       List<Video> res = [];
+      print('bind video');
       for (var el in query.docs) {
         res.add(Video.fromSnap(el));
       }
@@ -37,5 +42,20 @@ class VideoController extends GetxController {
         'likes': FieldValue.arrayUnion([uid]),
       });
     }
+  }
+
+  getProfileVideos(String uid) {
+    _profileVideoList.bindStream(firestore
+        .collection('videos')
+        .where('uid', isEqualTo: uid)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<Video> res = [];
+      print('bind video');
+      for (var el in query.docs) {
+        res.add(Video.fromSnap(el));
+      }
+      return res;
+    }));
   }
 }

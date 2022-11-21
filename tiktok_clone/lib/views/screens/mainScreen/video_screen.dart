@@ -12,7 +12,10 @@ import 'package:tiktok_clone/views/widgets/tik_tok_icons.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
 class VideoScreen extends StatefulWidget {
-  const VideoScreen({Key? key}) : super(key: key);
+  String uid;
+  int thumbnail;
+  VideoScreen({Key? key, required this.uid, required this.thumbnail})
+      : super(key: key);
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
@@ -22,6 +25,12 @@ class _VideoScreenState extends State<VideoScreen> {
   final VideoController videoController = Get.put(VideoController());
 
   bool _isFollowingSeleted = false;
+
+  @override
+  void initState() {
+    print("init video screen");
+    videoController.getProfileVideos(widget.uid);
+  }
 
   buildMusicAlbum(String profilePhoto) {
     return Stack(
@@ -123,41 +132,50 @@ class _VideoScreenState extends State<VideoScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: GestureDetector(
-          onTap: () {
-            setState(() {
-              _isFollowingSeleted = !_isFollowingSeleted;
-            });
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Following',
-                style: TextStyle(
-                    fontSize: _isFollowingSeleted ? 18 : 14,
-                    color: _isFollowingSeleted ? Colors.white : Colors.grey),
-              ),
-              const Text('  |  ',
-                  style: TextStyle(fontSize: 14, color: Colors.grey)),
-              Text('For you',
-                  style: TextStyle(
-                      fontSize: !_isFollowingSeleted ? 18 : 14,
-                      color:
-                          !_isFollowingSeleted ? Colors.white : Colors.grey)),
-            ],
-          ),
-        ),
+        title: widget.uid == ''
+            ? GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isFollowingSeleted = !_isFollowingSeleted;
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Following',
+                      style: TextStyle(
+                          fontSize: _isFollowingSeleted ? 18 : 14,
+                          color:
+                              _isFollowingSeleted ? Colors.white : Colors.grey),
+                    ),
+                    const Text('  |  ',
+                        style: TextStyle(fontSize: 14, color: Colors.grey)),
+                    Text('For you',
+                        style: TextStyle(
+                            fontSize: !_isFollowingSeleted ? 18 : 14,
+                            color: !_isFollowingSeleted
+                                ? Colors.white
+                                : Colors.grey)),
+                  ],
+                ),
+              )
+            : Container(),
       ),
       resizeToAvoidBottomInset: true,
       body: Obx(() {
         return PageView.builder(
-            itemCount: videoController.videoList.length,
-            controller: PageController(initialPage: 0, viewportFraction: 1),
+            itemCount: widget.uid == ""
+                ? videoController.videoList.length
+                : videoController.profileVideoList.length,
+            controller: PageController(
+                initialPage: widget.thumbnail, viewportFraction: 1),
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-              final data = videoController.videoList[index];
+              final data = widget.uid == ""
+                  ? videoController.videoList[index]
+                  : videoController.profileVideoList[index];
               VideoPlayerItem videoPlayerItem =
                   VideoPlayerItem(videoUrl: data.videoUrl);
               print('re create videoplayer item' + videoPlayerItem.toString());
@@ -271,8 +289,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     children: [
                                       InkWell(
                                           onTap: () {
-                                            showCommentBottomSheet(
-                                                context, data.id);
+                                            showCommentBottomSheet(context,
+                                                data.id, videoPlayerItem);
                                           },
                                           child: const Icon(
                                               TikTokIcons.chatBubble,
@@ -328,7 +346,8 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  void showCommentBottomSheet(BuildContext context, String id) {
+  void showCommentBottomSheet(
+      BuildContext context, String id, VideoPlayerItem videoPlayerItem) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -339,6 +358,7 @@ class _VideoScreenState extends State<VideoScreen> {
         builder: (context) {
           return CommentScreen(
             id: id,
+            videoPlayerItem: videoPlayerItem,
           );
         });
   }

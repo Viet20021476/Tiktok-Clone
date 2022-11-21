@@ -1,4 +1,6 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -17,12 +19,16 @@ const backGroundColor = Colors.white;
 const backGroundColor2 = Colors.black;
 var buttonColor = Colors.red;
 var borderColor = Colors.blueGrey;
+
 late File file;
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
 
 List pages = [
-  const VideoScreen(),
+  VideoScreen(
+    uid: '',
+    thumbnail: 0,
+  ),
   SearchScreen(),
   const AddVideoScreen(),
   const MessagesScreen(),
@@ -31,6 +37,17 @@ List pages = [
     isFromMethod: false,
   ),
 ];
+
+getInterenetStatus() async {
+  final Connectivity _connectivity = Connectivity();
+  ConnectivityResult result = ConnectivityResult.none;
+  try {
+    result = await _connectivity.checkConnectivity();
+  } on PlatformException catch (e) {
+    print(e.toString());
+  }
+  return result.toString();
+}
 
 createSnackbar(String title, String message, ContentType contentType) {
   return SnackBar(
