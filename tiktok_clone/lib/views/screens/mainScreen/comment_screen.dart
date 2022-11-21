@@ -154,7 +154,7 @@ class _CommentScreenState extends State<CommentScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                      bottom: MediaQuery.of(context).viewPadding.bottom),
                   child: Row(
                     children: [
                       const SizedBox(

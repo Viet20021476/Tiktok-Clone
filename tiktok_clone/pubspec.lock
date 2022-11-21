@@ -311,7 +311,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.14"
+    version: "2.2.15"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -728,7 +728,7 @@ packages:
       name: video_compress
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   video_player:
     dependency: "direct main"
     description:
