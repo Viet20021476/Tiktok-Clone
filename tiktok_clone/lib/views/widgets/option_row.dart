@@ -30,14 +30,20 @@ class OptionRow extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text(
-                    profileController.user[title],
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    child: Text(
+                      profileController.user[title],
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      maxLines: 1,
+                      textAlign: TextAlign.right,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     width: 5,

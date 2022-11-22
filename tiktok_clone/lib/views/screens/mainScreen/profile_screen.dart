@@ -126,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // user name
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text(controller.user['tiktokID'],
+                  child: Text('@' + controller.user['tiktokID'],
                       style:
                           const TextStyle(color: Colors.black, fontSize: 15)),
                 ),
@@ -275,6 +275,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ? "User bio here"
                         : controller.user['bio'],
                     style: TextStyle(color: Colors.grey[700]),
+                    textAlign: TextAlign.center,
                   ),
                 ),
 
