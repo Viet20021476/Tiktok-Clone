@@ -1,3 +1,6 @@
+//import 'dart:html';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -115,6 +118,14 @@ class CommentController extends GetxController {
           .update({
         'likes': FieldValue.arrayUnion([uid]),
       });
+    }
+  }
+
+  getBottomInset() {
+    if (Platform.isIOS) {
+      return 30.0;
+    } else {
+      return 5.0;
     }
   }
 }
