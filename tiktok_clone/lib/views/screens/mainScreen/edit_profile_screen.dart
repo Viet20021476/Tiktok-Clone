@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/edit_content_screen.dart';
 import 'package:tiktok_clone/views/widgets/option_row.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -66,7 +68,7 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 7,
+            height: 15,
           ),
           Center(
             child: Text(
@@ -91,17 +93,38 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          OptionRow(
-            title: "Name",
-            data: controller.user['userName'],
+          InkWell(
+            onTap: () {
+              Get.to(() => EditContentScreen(
+                    title: 'Name',
+                    controller: controller,
+                  ));
+            },
+            child: OptionRow(
+              title: "name",
+              profileController: controller,
+            ),
           ),
-          OptionRow(
-            title: "TikTok ID",
-            data: controller.user['tiktokID'],
+          InkWell(
+            onTap: () {
+              Get.to(() => EditContentScreen(
+                    title: 'TikTok ID',
+                    controller: controller,
+                  ));
+            },
+            child: OptionRow(
+              title: "tiktokID",
+              profileController: controller,
+            ),
           ),
-          OptionRow(
-            title: "Bio",
-            data: controller.user['bio'],
+          InkWell(
+            onTap: () {
+              Get.to(() => EditContentScreen(
+                    title: 'Bio',
+                    controller: controller,
+                  ));
+            },
+            child: OptionRow(title: "bio", profileController: controller),
           ),
         ]),
       ),

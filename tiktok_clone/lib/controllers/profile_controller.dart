@@ -33,6 +33,8 @@ class ProfileController extends GetxController {
     final userData = userDoc.data()! as dynamic;
     String name = userData['name'];
     String profilePhoto = userData['profilePhoto'];
+    String tiktokID = userData['tiktokID'];
+    String bio = userData['bio'];
     int likes = 0;
     int followers = 0;
     int following = 0;
@@ -76,6 +78,8 @@ class ProfileController extends GetxController {
       'profilePhoto': profilePhoto,
       'name': name,
       'thumbnails': thumbnails,
+      'tiktokID': tiktokID,
+      'bio': bio
     };
     update();
     _isLoading.value = false;
@@ -127,5 +131,14 @@ class ProfileController extends GetxController {
       _user.value.update('isFollowing', (value) => false);
     }
     update();
+  }
+
+  updateContent(String content, String currentDocument) {
+    firestore
+        .collection("users")
+        .doc(uid)
+        .update({currentDocument: content}).then((value) {
+      Get.back();
+    });
   }
 }

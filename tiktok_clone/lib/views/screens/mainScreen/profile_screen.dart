@@ -52,6 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             );
           }
+          print(controller.user['tiktokID']);
           return DefaultTabController(
             length: 3,
             child: Scaffold(
@@ -100,7 +101,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 actions: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => SettingScreen());
+                      Get.to(() => SettingScreen(
+                            controller: profileController,
+                          ));
                     },
                     child: Padding(
                       padding: EdgeInsets.only(right: 10, left: 10),
@@ -123,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // user name
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text('@${controller.user['name']}',
+                  child: Text(controller.user['tiktokID'],
                       style:
                           const TextStyle(color: Colors.black, fontSize: 15)),
                 ),
@@ -264,9 +267,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 15),
                 // bio
-                Text(
-                  "User bio here",
-                  style: TextStyle(color: Colors.grey[700]),
+
+                InkWell(
+                  onTap: (() {}),
+                  child: Text(
+                    controller.user['bio'] == ''
+                        ? "User bio here"
+                        : controller.user['bio'],
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
                 ),
 
                 // default tab controller

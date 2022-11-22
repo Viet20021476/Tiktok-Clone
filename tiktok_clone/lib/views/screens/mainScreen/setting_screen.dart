@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/widgets/option_row.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({super.key});
+  SettingScreen({super.key, required this.controller});
+  ProfileController controller;
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -66,23 +68,23 @@ class _SettingScreenState extends State<SettingScreen> {
                 children: [
                   OptionRow(
                     title: "Change password",
-                    data: '',
+                    profileController: widget.controller,
                   ),
                   OptionRow(
                     title: "Content settings",
-                    data: '',
+                    profileController: widget.controller,
                   ),
                   OptionRow(
                     title: "Social",
-                    data: '',
+                    profileController: widget.controller,
                   ),
                   OptionRow(
                     title: "Language",
-                    data: '',
+                    profileController: widget.controller,
                   ),
                   OptionRow(
                     title: "Privacy and security",
-                    data: '',
+                    profileController: widget.controller,
                   ),
                 ],
               ),
@@ -118,7 +120,7 @@ class _SettingScreenState extends State<SettingScreen> {
               child: InkWell(
                 child: OptionRow(
                   title: "Log out",
-                  data: '',
+                  profileController: widget.controller,
                 ),
                 onTap: () {
                   authController.signOutUser();
