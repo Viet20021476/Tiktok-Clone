@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -21,12 +23,15 @@ class CommentScreen extends StatefulWidget {
 class _CommentScreenState extends State<CommentScreen> {
   var sendButtonVisible = false.obs;
 
+
+
   CommentController commentController = Get.put(CommentController());
 
   @override
   Widget build(BuildContext context) {
     commentController.updatePostId(widget.id);
     commentController.getProfilePhoto();
+
     return Obx(() {
       return SingleChildScrollView(
         child: SizedBox(
@@ -154,7 +159,7 @@ class _CommentScreenState extends State<CommentScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewPadding.bottom),
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: Row(
                     children: [
                       const SizedBox(
@@ -250,8 +255,8 @@ class _CommentScreenState extends State<CommentScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
+                SizedBox(
+                  height: commentController.getBottomInset(),
                 )
               ],
             )),
