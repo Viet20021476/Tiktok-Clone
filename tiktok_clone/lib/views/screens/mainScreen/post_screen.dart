@@ -1,13 +1,8 @@
 import 'dart:io';
-
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/controllers/upload_video_controller.dart';
-import 'package:video_player/video_player.dart';
 
 class PostScreen extends StatefulWidget {
   String videoThumbnailUrl;

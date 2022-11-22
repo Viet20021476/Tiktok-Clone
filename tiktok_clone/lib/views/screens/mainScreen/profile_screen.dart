@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/edit_profile_screen.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_1.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_2.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/setting_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -22,14 +24,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     profileController.updateUserId(widget.uid);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -97,12 +97,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Get.back();
                         },
                       ),
-                actions: const [
-                  Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: ImageIcon(
-                      AssetImage('assets/my-icons/menuicon.png'),
-                      color: Colors.black,
+                actions: [
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => SettingScreen());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10, left: 10),
+                      child: ImageIcon(
+                        AssetImage('assets/my-icons/menuicon.png'),
+                        color: Colors.black,
+                      ),
                     ),
                   )
                 ],
@@ -196,9 +201,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 40),
                         decoration: BoxDecoration(
-                            color: !controller.user['isFollowing']
-                                ? Colors.red
-                                : Colors.white,
+                            color: widget.uid == authController.user.uid
+                                ? Colors.white
+                                : !controller.user['isFollowing']
+                                    ? Colors.red
+                                    : Colors.white,
                             border: Border.all(color: Colors.grey.shade300),
                             borderRadius: BorderRadius.circular(5)),
                         child: Text(
@@ -207,15 +214,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               : controller.user['isFollowing']
                                   ? 'Unfollow'
                                   : 'Follow',
-                          style: !controller.user['isFollowing']
+                          style: widget.uid == authController.user.uid
                               ? const TextStyle(
-                                  color: Colors.white, fontSize: 14)
-                              : const TextStyle(
-                                  color: Colors.black, fontSize: 14),
+                                  color: Colors.black, fontSize: 14)
+                              : !controller.user['isFollowing']
+                                  ? const TextStyle(
+                                      color: Colors.white, fontSize: 14)
+                                  : const TextStyle(
+                                      color: Colors.black, fontSize: 14),
                         ),
                       ),
                       onTap: () {
                         if (widget.uid == authController.user.uid) {
+                          Get.to(
+                              () => EditProfileScreen(controller: controller));
                         } else {
                           controller.followUser();
                         }

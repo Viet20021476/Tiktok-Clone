@@ -5,12 +5,16 @@ class User {
   String email;
   String uid;
   String profilePhoto;
+  String tiktokID;
+  String bio;
 
   User(
       {required this.name,
       required this.email,
       required this.uid,
-      required this.profilePhoto});
+      required this.profilePhoto,
+      required this.tiktokID,
+      required this.bio});
 
   Map<String, dynamic> toJson() {
     return {
@@ -18,6 +22,8 @@ class User {
       "email": email,
       "uid": uid,
       "profilePhoto": profilePhoto,
+      "tiktokID": tiktokID,
+      "bio": bio
     };
   }
 
@@ -27,6 +33,8 @@ class User {
         name: snapshot['name'],
         email: snapshot['email'],
         uid: snapshot['uid'],
-        profilePhoto: snapshot['profilePhoto']);
+        profilePhoto: snapshot['profilePhoto'],
+        tiktokID: snapshot['tiktokID'],
+        bio: snapshot['bio']);
   }
 }

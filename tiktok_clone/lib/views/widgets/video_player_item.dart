@@ -56,7 +56,6 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return FutureBuilder(
         future: _initializeVideoPlayer,
         builder: (context, snapshot) {

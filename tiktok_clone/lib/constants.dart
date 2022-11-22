@@ -1,6 +1,5 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';

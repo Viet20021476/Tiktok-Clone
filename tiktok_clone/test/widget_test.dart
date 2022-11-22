@@ -38,7 +38,8 @@ void main() {
   test("Check if users array is empty", () => {expect(users, <User>[])});
 
   test("Check if users array has 1 element", () {
-    users.add(User(name: "", email: "", uid: "", profilePhoto: ""));
+    users.add(User(
+        name: "", email: "", uid: "", profilePhoto: "", tiktokID: "", bio: ""));
     expect(users.length, 1);
   });
 }

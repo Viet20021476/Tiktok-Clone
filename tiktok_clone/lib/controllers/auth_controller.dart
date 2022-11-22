@@ -63,7 +63,9 @@ class AuthController extends GetxController {
             email: email,
             name: username,
             uid: userCredential.user!.uid,
-            profilePhoto: downloadURL);
+            profilePhoto: downloadURL,
+            tiktokID: '@${username}',
+            bio: '');
         await firestore
             .collection('users')
             .doc(userCredential.user!.uid)
@@ -134,6 +136,16 @@ class AuthController extends GetxController {
           'Error reseting password', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
+  }
+
+  void changePassword(String password) async {
+    //Pass in the password to updatePassword.
+    user.updatePassword(password).then((_) {
+      print("Successfully changed password");
+    }).catchError((error) {
+      print("Password can't be changed" + error.toString());
+      //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
+    });
   }
 
   setInitialScreen(User? user) {

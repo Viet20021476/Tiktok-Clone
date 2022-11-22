@@ -1,10 +1,7 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
-import 'package:tiktok_clone/controllers/upload_video_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/post_screen.dart';
 import 'package:video_player/video_player.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';

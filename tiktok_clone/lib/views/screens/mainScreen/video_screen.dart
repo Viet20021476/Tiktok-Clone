@@ -28,6 +28,7 @@ class _VideoScreenState extends State<VideoScreen> {
 
   @override
   void initState() {
+    super.initState();
     print("init video screen");
     videoController.getProfileVideos(widget.uid);
   }
