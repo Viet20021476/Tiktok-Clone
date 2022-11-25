@@ -45,16 +45,16 @@ class VideoController extends GetxController {
   }
 
   getProfileVideos(String uid) async {
-    _profileVideoList.value = await firestore
+    _profileVideoList.bindStream(firestore
         .collection('videos')
         .where('uid', isEqualTo: uid)
-        .get()
-        .then((querySnapshot) {
+        .snapshots()
+        .map((QuerySnapshot query) {
       List<Video> res = [];
-      for (var el in querySnapshot.docs) {
+      for (var el in query.docs) {
         res.add(Video.fromSnap(el));
       }
       return res;
-    });
+    }));
   }
 }
