@@ -101,9 +101,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 actions: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => SettingScreen(
-                            controller: profileController,
-                          ));
+                      widget.uid == authController.user.uid
+                          ? Get.to(() => SettingScreen(
+                                controller: profileController,
+                              ))
+                          : {print('route' + Get.currentRoute)};
                     },
                     child: Padding(
                       padding: EdgeInsets.only(right: 10, left: 10),
@@ -353,9 +355,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               ListTile(
                 leading: const CircleAvatar(
-                  backgroundColor: Colors.black,
-                  backgroundImage: NetworkImage(
-                      'https://cdn-icons-png.flaticon.com/512/3168/3168166.png'),
+                  backgroundColor: Color.fromARGB(255, 196, 182, 182),
+                  child: Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                  ),
                 ),
                 title: const Text(
                   'Sign out',

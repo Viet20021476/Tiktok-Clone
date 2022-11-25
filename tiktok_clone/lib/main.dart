@@ -20,10 +20,8 @@ void _enablePlatformOverrideForDesktop() {
 }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
-
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthController()));

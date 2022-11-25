@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
+import 'package:tiktok_clone/views/screens/authens/change_password_sceen.dart';
 import 'package:tiktok_clone/views/widgets/option_row.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -66,9 +68,14 @@ class _SettingScreenState extends State<SettingScreen> {
                   borderRadius: BorderRadius.circular(6), color: Colors.white),
               child: Column(
                 children: [
-                  OptionRow(
-                    title: "Change password",
-                    profileController: widget.controller,
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => ChangePasswordScreen());
+                    },
+                    child: OptionRow(
+                      title: "Change password",
+                      profileController: widget.controller,
+                    ),
                   ),
                   OptionRow(
                     title: "Content settings",

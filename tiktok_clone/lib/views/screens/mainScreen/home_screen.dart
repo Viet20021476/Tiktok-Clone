@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/screens/mainScreen/add_video_screen.dart';
 import 'package:tiktok_clone/views/widgets/custom_icon.dart';
 import 'package:tiktok_clone/views/widgets/tik_tok_icons.dart';
 
@@ -23,9 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BottomNavigationBar(
           onTap: (idx) {
             setState(() {
-              pageIdx = idx;
-              icon.setPageId(pageIdx);
-              icon.getPageId();
+              if (idx == 2) {
+                Get.to(() => AddVideoScreen());
+              } else {
+                pageIdx = idx;
+                icon.setPageId(pageIdx);
+                icon.getPageId();
+              }
             });
           },
           type: BottomNavigationBarType.fixed,

@@ -55,7 +55,6 @@ class _EditContentScreenState extends State<EditContentScreen> {
               onPressed: () {
                 widget.controller
                     .updateContent(fieldController.text, currentDocument);
-                widget.controller.getUserData();
               },
               child: Text(
                 "Save",

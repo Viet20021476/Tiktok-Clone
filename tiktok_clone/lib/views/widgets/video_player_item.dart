@@ -5,22 +5,9 @@ import 'package:video_player/video_player.dart';
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
   VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
-  _VideoPlayerItemState _videoPlayerItemState = _VideoPlayerItemState();
 
   @override
-  State<VideoPlayerItem> createState() => _videoPlayerItemState;
-
-  void pauseVideo() {
-    print('pause' + _videoPlayerItemState.videoPlayerController.toString());
-    _videoPlayerItemState.videoPlayerController.pause();
-    _videoPlayerItemState.isPlaying = false;
-  }
-
-  void playVideo() {
-    print('play' + _videoPlayerItemState.videoPlayerController.toString());
-    _videoPlayerItemState.videoPlayerController.play();
-    _videoPlayerItemState.isPlaying = true;
-  }
+  State<VideoPlayerItem> createState() => _VideoPlayerItemState();
 }
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
@@ -50,7 +37,6 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   void dispose() {
     print('dispose' + videoPlayerController.toString());
     videoPlayerController.dispose();
-
     super.dispose();
   }
 

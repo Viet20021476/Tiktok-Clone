@@ -25,11 +25,11 @@ final GlobalKey<ScaffoldMessengerState> snackbarKey =
 
 List pages = [
   VideoScreen(
-    uid: '',
-    thumbnail: 0,
+    uid: authController.user.uid,
+    thumbnail: -1,
   ),
   SearchScreen(),
-  const AddVideoScreen(),
+  Container(),
   const MessagesScreen(),
   ProfileScreen(
     uid: authController.user.uid,

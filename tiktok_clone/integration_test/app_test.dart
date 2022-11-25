@@ -18,7 +18,7 @@ void main() {
 
   testWidgets("click register -> go to register screen",
       (WidgetTester tester) async {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp().then((value) => {Get.put(AuthController())});
     await tester.pumpWidget(const MyApp());
     await tester.tap(find.byKey(const Key('register-screen-button')));
     await tester.pumpAndSettle();
@@ -33,8 +33,8 @@ void main() {
         find.byKey(const Key('email-field')), 'ductung2002dp@gmail.com');
     await tester.enterText(find.byKey(const Key('password-field')), 'test123');
     await tester.tap(find.byKey(const Key('login-button')));
-    await tester.pumpAndSettle();
-    await addDelay(5000);
+    await addDelay(3000);
+
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('my-home')), findsOneWidget);
   });

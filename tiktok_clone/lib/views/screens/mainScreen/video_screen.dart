@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
   final VideoController videoController = Get.put(VideoController());
+  late Timer timer;
 
   bool _isFollowingSeleted = false;
 
@@ -82,25 +85,30 @@ class _VideoScreenState extends State<VideoScreen> {
             ),
             onTap: () async {
               // Get.to(() => VideoScreen());
+              // videoPlayerItem.printt();
               // videoPlayerItem.pauseVideo();
+              // print(videoPlayerItem);
+              // final checkData = await Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => ProfileScreen(
+              //               uid: uid,
+              //               isFromMethod: true,
+              //             )));
+              // print(checkData);
+              //await videoController.getProfileVideos(uid);
 
-              videoPlayerItem.pauseVideo();
-              print(videoPlayerItem);
-              final checkData = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProfileScreen(
-                            uid: uid,
-                            isFromMethod: true,
-                          )));
-              print(checkData);
-              if (checkData != null) {
-                videoPlayerItem.playVideo();
-                print(videoPlayerItem);
-              } else {
-                videoPlayerItem.playVideo();
-                print(videoPlayerItem);
-              }
+              Get.to(() => ProfileScreen(
+                    uid: uid,
+                    isFromMethod: true,
+                  ));
+              // if (checkData != null) {
+              //   videoPlayerItem.playVideo();
+              //   print(videoPlayerItem);
+              // } else {
+              //   videoPlayerItem.playVideo();
+              //   print(videoPlayerItem);
+              // }
             },
           ),
           Positioned(
@@ -166,15 +174,18 @@ class _VideoScreenState extends State<VideoScreen> {
       ),
       resizeToAvoidBottomInset: true,
       body: Obx(() {
+        print(widget.thumbnail);
         return PageView.builder(
-            itemCount: widget.uid == ""
+            controller: PageController(
+                initialPage: widget.thumbnail == -1 ? 0 : widget.thumbnail,
+                viewportFraction: 1,
+                keepPage: true),
+            itemCount: widget.thumbnail == -1
                 ? videoController.videoList.length
                 : videoController.profileVideoList.length,
-            controller: PageController(
-                initialPage: widget.thumbnail, viewportFraction: 1),
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-              final data = widget.uid == ""
+              final data = widget.thumbnail == -1
                   ? videoController.videoList[index]
                   : videoController.profileVideoList[index];
               VideoPlayerItem videoPlayerItem =

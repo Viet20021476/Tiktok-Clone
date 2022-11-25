@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/main.dart';
 
 import 'confirm_screen.dart';
@@ -35,9 +33,9 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
       // ignore: use_build_context_synchronously
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ConfirmScreen(
-            videoFile: File(video.path),
-            videoPath: video.path,
-          )));
+                videoFile: File(video.path),
+                videoPath: video.path,
+              )));
     }
   }
 
@@ -104,7 +102,9 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
-                      onTap: () => {},
+                      onTap: () {
+                        Get.back();
+                      },
                       child: Icon(
                         Icons.close,
                         color: Colors.white,
@@ -194,7 +194,7 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
                     GestureDetector(
                       onTap: () => pickVideo(ImageSource.gallery, context),
                       child: _buildIconWithText(
-                          "upload", "Upload", style.copyWith(fontSize: 11), 40),  
+                          "upload", "Upload", style.copyWith(fontSize: 11), 40),
                     ),
                   ],
                 ),

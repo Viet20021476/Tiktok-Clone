@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -14,6 +15,8 @@ class AuthController extends GetxController {
 
   late final Rx<File> _pickedImage = Rx<File>(file);
   late Rx<User?> _user;
+  final Rx<bool> _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
 
   File get profilePhoto => _pickedImage.value;
 
@@ -55,6 +58,7 @@ class AuthController extends GetxController {
           email.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
+        _isLoading.value = true;
         //save out user to auth and firebase firestore
         UserCredential userCredential = await firebaseAuth
             .createUserWithEmailAndPassword(email: email, password: password);
@@ -70,6 +74,8 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(userCredential.user!.uid)
             .set(user.toJson());
+        _isLoading.value = false;
+
         Get.back();
         final snackbar =
             createSnackbar('Register successfully', '', ContentType.success);
@@ -80,6 +86,9 @@ class AuthController extends GetxController {
         snackbarKey.currentState?.showSnackBar(snackbar);
       }
     } on FirebaseAuthException catch (e) {
+      _isLoading.value = false;
+      Get.back();
+
       final snackbar = createSnackbar(
           'Error creating account', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
@@ -100,18 +109,27 @@ class AuthController extends GetxController {
   void loginUser(String email, String password) async {
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
+        _isLoading.value = true;
+
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
+        _isLoading.value = false;
       } else {
         final snackbar = createSnackbar(
             'On Snap!', 'Please enter all the fields!', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
+        _isLoading.value = false;
+
         // Get.snackbar(
         //   'Error logging in',
         //   'Please enter all the fields',
         // );
       }
     } catch (e) {
+      Get.back();
+
+      _isLoading.value = false;
+
       final snackbar =
           createSnackbar('Error logging in', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
@@ -140,10 +158,22 @@ class AuthController extends GetxController {
 
   void changePassword(String password) async {
     //Pass in the password to updatePassword.
+    if (password.trim() == '') {
+      final snackbar =
+          createSnackbar('Please enter all the field', '', ContentType.warning);
+      snackbarKey.currentState?.showSnackBar(snackbar);
+      return;
+    }
     user.updatePassword(password).then((_) {
+      Get.back();
+      final snackbar = createSnackbar(
+          'Update password successfully', '', ContentType.success);
+      snackbarKey.currentState?.showSnackBar(snackbar);
       print("Successfully changed password");
     }).catchError((error) {
-      print("Password can't be changed" + error.toString());
+      final snackbar =
+          createSnackbar(error.toString(), '', ContentType.failure);
+      snackbarKey.currentState?.showSnackBar(snackbar);
       //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
     });
   }

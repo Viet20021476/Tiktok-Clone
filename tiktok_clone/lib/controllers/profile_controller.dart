@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/models/video.dart';
 
 class ProfileController extends GetxController {
   final Rx<Map<String, dynamic>> _user = Rx<Map<String, dynamic>>({});
@@ -10,13 +11,15 @@ class ProfileController extends GetxController {
   String get uid => _uid.value;
   final Rx<bool> _isLoading = true.obs;
   bool get isLoading => _isLoading.value;
+  final Rx<bool> _isImgLoading = false.obs;
+  bool get isImgLoading => _isLoading.value;
 
   updateUserId(String uid) {
     _uid.value = uid;
     getUserData();
   }
 
-  void getUserData() async {
+  getUserData() async {
     List<String> thumbnails = [];
     _isLoading.value = true;
     var myVideos = await firestore
@@ -81,6 +84,7 @@ class ProfileController extends GetxController {
       'tiktokID': tiktokID,
       'bio': bio
     };
+    _isImgLoading.value = false;
     update();
     _isLoading.value = false;
   }
@@ -133,12 +137,45 @@ class ProfileController extends GetxController {
     update();
   }
 
-  updateContent(String content, String currentDocument) {
-    firestore
+  updateContent(String content, String currentDocument) async {
+    if (currentDocument == 'name' || currentDocument == 'profilePhoto') {
+      var videoList = await firestore
+          .collection('videos')
+          .where('uid', isEqualTo: uid)
+          .get()
+          .then((querySnapshot) {
+        List<Video> res = [];
+        for (var el in querySnapshot.docs) {
+          res.add(Video.fromSnap(el));
+        }
+        return res;
+      });
+      if (currentDocument == 'name') {
+        videoList.forEach((element) async {
+          await firestore
+              .collection("videos")
+              .doc(element.id)
+              .update({'userName': content});
+        });
+      } else {
+        _isImgLoading.value = true;
+        videoList.forEach((element) async {
+          await firestore
+              .collection("videos")
+              .doc(element.id)
+              .update({'profilePhoto': content});
+        });
+      }
+    }
+    await firestore
         .collection("users")
         .doc(uid)
         .update({currentDocument: content}).then((value) {
-      Get.back();
+      getUserData();
+
+      if (currentDocument != 'profilePhoto') {
+        Get.back();
+      }
     });
   }
 }

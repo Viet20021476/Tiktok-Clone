@@ -23,8 +23,6 @@ class CommentScreen extends StatefulWidget {
 class _CommentScreenState extends State<CommentScreen> {
   var sendButtonVisible = false.obs;
 
-
-
   CommentController commentController = Get.put(CommentController());
 
   @override
@@ -54,23 +52,22 @@ class _CommentScreenState extends State<CommentScreen> {
                           return ListTile(
                             leading: InkWell(
                               onTap: () async {
-                                widget.videoPlayerItem.pauseVideo();
-                                print(widget.videoPlayerItem);
+                                // widget.videoPlayerItem.pauseVideo();
                                 final checkData = await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProfileScreen(
+                                        builder: (context) => new ProfileScreen(
                                               uid: comment.uid,
                                               isFromMethod: true,
                                             )));
                                 print(checkData);
-                                if (checkData != null) {
-                                  widget.videoPlayerItem.playVideo();
-                                  print(widget.videoPlayerItem);
-                                } else {
-                                  widget.videoPlayerItem.playVideo();
-                                  print(widget.videoPlayerItem);
-                                }
+                                // if (checkData != null) {
+                                //   widget.videoPlayerItem.playVideo();
+                                //   print(widget.videoPlayerItem);
+                                // } else {
+                                //   widget.videoPlayerItem.playVideo();
+                                //   print(widget.videoPlayerItem);
+                                // }
                               },
                               child: CircleAvatar(
                                 backgroundColor: Colors.black,

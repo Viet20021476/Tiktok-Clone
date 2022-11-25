@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/authens/reset_password_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
@@ -192,11 +193,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Color.fromRGBO(143, 148, 251, .6),
                         ]),
                       ),
-                      child: const Center(
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Register",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            authController.isLoading
+                                ? Container(
+                                    child: Lottie.asset(
+                                      'assets/my-icons/tiktok_loader.json',
+                                      width: 40,
+                                      height: 40,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Container(),
+                          ],
                         ),
                       ),
                     ),
