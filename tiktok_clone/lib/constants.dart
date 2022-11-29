@@ -18,6 +18,7 @@ const backGroundColor = Colors.white;
 const backGroundColor2 = Colors.black;
 var buttonColor = Colors.red;
 var borderColor = Colors.blueGrey;
+var numCheck = 0;
 
 late File file;
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
