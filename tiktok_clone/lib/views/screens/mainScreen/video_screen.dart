@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +10,7 @@ import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/tik_tok_icons.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoScreen extends StatefulWidget {
   String uid;
@@ -24,8 +23,9 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  final VideoController videoController = Get.put(VideoController());
-  late Timer timer;
+  String tag = numCheck.toString();
+
+  late VideoController videoController;
 
   bool _isFollowingSeleted = false;
 
@@ -33,7 +33,16 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
     print("init video screen");
+    Get.put(VideoController(), tag: tag);
+    videoController = Get.find<VideoController>(tag: tag);
+    numCheck++;
     videoController.getProfileVideos(widget.uid);
+  }
+
+  @override
+  void dispose() {
+    Get.delete<VideoController>(tag: tag);
+    super.dispose();
   }
 
   buildMusicAlbum(String profilePhoto) {
@@ -61,8 +70,8 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  buildProfile(
-      String profilePhoto, String uid, VideoPlayerItem videoPlayerItem) {
+  buildProfile(String profilePhoto, String uid,
+      VideoPlayerController videoPlayerController) {
     return SizedBox(
       width: 50,
       height: 60,
@@ -84,31 +93,24 @@ class _VideoScreenState extends State<VideoScreen> {
               ),
             ),
             onTap: () async {
-              // Get.to(() => VideoScreen());
-              // videoPlayerItem.printt();
-              // videoPlayerItem.pauseVideo();
-              // print(videoPlayerItem);
-              // final checkData = await Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => ProfileScreen(
-              //               uid: uid,
-              //               isFromMethod: true,
-              //             )));
-              // print(checkData);
-              //await videoController.getProfileVideos(uid);
-
-              Get.to(() => ProfileScreen(
-                    uid: uid,
-                    isFromMethod: true,
-                  ));
-              // if (checkData != null) {
-              //   videoPlayerItem.playVideo();
-              //   print(videoPlayerItem);
-              // } else {
-              //   videoPlayerItem.playVideo();
-              //   print(videoPlayerItem);
-              // }
+              videoPlayerController.pause();
+              final checkData = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileScreen(
+                            uid: uid,
+                            isFromMethod: true,
+                          )));
+              // await videoController.getProfileVideos(uid);
+              // Get.to(() => ProfileScreen(
+              //       uid: uid,
+              //       isFromMethod: true,
+              //     ));
+              if (checkData != null) {
+                videoPlayerController.play();
+              } else {
+                videoPlayerController.play();
+              }
             },
           ),
           Positioned(
@@ -188,13 +190,15 @@ class _VideoScreenState extends State<VideoScreen> {
               final data = widget.thumbnail == -1
                   ? videoController.videoList[index]
                   : videoController.profileVideoList[index];
-              VideoPlayerItem videoPlayerItem =
-                  VideoPlayerItem(videoUrl: data.videoUrl);
-              print('re create videoplayer item' + videoPlayerItem.toString());
+              VideoPlayerController videoPlayerController =
+                  VideoPlayerController.network(data.videoUrl);
 
               return Stack(
                 children: [
-                  videoPlayerItem,
+                  VideoPlayerItem(
+                    videoUrl: data.videoUrl,
+                    videoPlayerController: videoPlayerController,
+                  ),
                   Column(
                     children: [
                       const SizedBox(height: 100),
@@ -271,7 +275,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   buildProfile(data.profilePhoto, data.uid,
-                                      videoPlayerItem),
+                                      videoPlayerController),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -301,8 +305,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     children: [
                                       InkWell(
                                           onTap: () {
-                                            showCommentBottomSheet(context,
-                                                data.id, videoPlayerItem);
+                                            // showCommentBottomSheet(context,
+                                            //     data.id, vd);
                                           },
                                           child: const Icon(
                                               TikTokIcons.chatBubble,

@@ -28,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     Get.put(ProfileController(), tag: widget.tag);
     profileController = Get.find<ProfileController>(tag: widget.tag);
-    print(widget.tag);
     numCheck++;
     profileController.updateUserId(widget.uid);
   }

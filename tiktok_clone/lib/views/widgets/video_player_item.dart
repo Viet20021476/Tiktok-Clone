@@ -1,42 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
-  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  VideoPlayerController videoPlayerController;
+  VideoPlayerItem(
+      {Key? key, required this.videoUrl, required this.videoPlayerController})
+      : super(key: key);
 
   @override
   State<VideoPlayerItem> createState() => _VideoPlayerItemState();
 }
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
-  late VideoPlayerController videoPlayerController;
+  // late VideoPlayerController videoPlayerController;
   late Future _initializeVideoPlayer;
   bool isPlaying = true;
+
+  late Rx<String> currentRoute;
 
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.network(widget.videoUrl);
-    _initializeVideoPlayer = videoPlayerController.initialize().then((value) {
-      videoPlayerController.play();
-      videoPlayerController.setVolume(1);
-      videoPlayerController.setLooping(true);
-      videoPlayerController.addListener(() {
+    // videoPlayerController = VideoPlayerController.network(widget.videoUrl);
+    _initializeVideoPlayer =
+        widget.videoPlayerController.initialize().then((value) {
+      widget.videoPlayerController.play();
+      widget.videoPlayerController.setVolume(1);
+      widget.videoPlayerController.setLooping(true);
+      widget.videoPlayerController.addListener(() {
         if (mounted) {
           setState(() {});
         }
       });
     });
-
-    print('init' + videoPlayerController.toString());
+    print('init' + widget.videoPlayerController.toString());
   }
 
   @override
   void dispose() {
-    print('dispose' + videoPlayerController.toString());
-    videoPlayerController.dispose();
+    print('dispose' + widget.videoPlayerController.toString());
+    widget.videoPlayerController.dispose();
     super.dispose();
   }
 
@@ -67,8 +74,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                       Center(
                         child: AspectRatio(
                             aspectRatio:
-                                videoPlayerController.value.aspectRatio,
-                            child: VideoPlayer(videoPlayerController)),
+                                widget.videoPlayerController.value.aspectRatio,
+                            child: VideoPlayer(widget.videoPlayerController)),
                       ),
                       IconButton(
                         onPressed: () {},
@@ -81,9 +88,10 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                     ],
                   ),
                   onTap: () {
+                    print(Get.currentRoute);
                     isPlaying
-                        ? videoPlayerController.pause()
-                        : videoPlayerController.play();
+                        ? widget.videoPlayerController.pause()
+                        : widget.videoPlayerController.play();
                     setState(() {
                       isPlaying = !isPlaying;
                     });
