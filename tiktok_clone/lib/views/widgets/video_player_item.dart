@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tiktok_clone/constants.dart';
 import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
   VideoPlayerController videoPlayerController;

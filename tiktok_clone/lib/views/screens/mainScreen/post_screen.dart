@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/controllers/upload_video_controller.dart';
 
+// ignore: must_be_immutable
 class PostScreen extends StatefulWidget {
   String videoThumbnailUrl;
   String videoSongName;

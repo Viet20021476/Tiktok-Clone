@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
 
+// ignore: must_be_immutable
 class EditContentScreen extends StatefulWidget {
   EditContentScreen({super.key, required this.title, required this.controller});
   String title;

@@ -1,19 +1,19 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
-import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class CommentScreen extends StatefulWidget {
   final String id;
-  VideoPlayerItem videoPlayerItem;
+  VideoPlayerController videoPlayerController;
 
   // ignore: prefer_const_constructors_in_immutables
-  CommentScreen({super.key, required this.id, required this.videoPlayerItem});
+  CommentScreen(
+      {super.key, required this.id, required this.videoPlayerController});
   static TextEditingController commentTextController = TextEditingController();
 
   @override

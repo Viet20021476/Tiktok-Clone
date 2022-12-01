@@ -12,6 +12,7 @@ import 'package:tiktok_clone/views/widgets/tik_tok_icons.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class VideoScreen extends StatefulWidget {
   String uid;
   int thumbnail;
@@ -305,8 +306,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     children: [
                                       InkWell(
                                           onTap: () {
-                                            // showCommentBottomSheet(context,
-                                            //     data.id, vd);
+                                            showCommentBottomSheet(context,
+                                                data.id, videoPlayerController);
                                           },
                                           child: const Icon(
                                               TikTokIcons.chatBubble,
@@ -362,8 +363,8 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  void showCommentBottomSheet(
-      BuildContext context, String id, VideoPlayerItem videoPlayerItem) {
+  void showCommentBottomSheet(BuildContext context, String id,
+      VideoPlayerController videoPlayerController) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -374,7 +375,7 @@ class _VideoScreenState extends State<VideoScreen> {
         builder: (context) {
           return CommentScreen(
             id: id,
-            videoPlayerItem: videoPlayerItem,
+            videoPlayerController: videoPlayerController,
           );
         });
   }

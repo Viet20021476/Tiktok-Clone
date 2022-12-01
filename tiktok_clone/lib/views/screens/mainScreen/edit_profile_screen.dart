@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lottie/lottie.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/edit_content_screen.dart';
 import 'package:tiktok_clone/views/widgets/option_row.dart';
 
+// ignore: must_be_immutable
 class EditProfileScreen extends StatelessWidget {
   ProfileController controller;
   EditProfileScreen({super.key, required this.controller});
