@@ -52,8 +52,7 @@ Integration test:
 ![image](https://user-images.githubusercontent.com/78079771/201485682-99dd2213-3a7e-431b-8f0c-7c149e790768.png)
 
 #### Ảnh đo mức độ bao phủ 
-
-<img width="1512" alt="Screen Shot 2022-10-28 at 10 08 58" src="https://user-images.githubusercontent.com/78094729/198492678-6058d94b-724b-431e-abc5-e44b5113e71c.png">
+![317595995_850198869555799_6182685878513295776_n](https://user-images.githubusercontent.com/78094729/205228174-1a8ea33f-75a7-412f-a3b2-946724d9e1fb.png)
 
 ### Tuần 8 + 9: Chia sẻ báo cáo về sử dụng công cụ kiểm thử
 
