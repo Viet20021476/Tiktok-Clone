@@ -23,6 +23,7 @@ class _SettingScreenState extends State<SettingScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
+          key: Key('setting-back'),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -70,6 +71,7 @@ class _SettingScreenState extends State<SettingScreen> {
               child: Column(
                 children: [
                   InkWell(
+                    key: Key('change-pass-btn'),
                     onTap: () {
                       Get.to(() => ChangePasswordScreen());
                     },

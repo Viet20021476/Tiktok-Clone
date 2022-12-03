@@ -73,6 +73,7 @@ class _EditContentScreenState extends State<EditContentScreen> {
                 height: 1.0,
               )),
           leading: InkWell(
+            key: Key('back'),
             onTap: () {
               Navigator.of(context).pop();
             },

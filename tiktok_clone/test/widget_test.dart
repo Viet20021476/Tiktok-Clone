@@ -5,41 +5,27 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:tiktok_clone/models/user.dart';
-import 'package:tiktok_clone/views/screens/authens/login_screen.dart';
-import 'package:tiktok_clone/views/screens/mainScreen/add_video_screen.dart';
-import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 void main() {
-  List<User> users = [];
+  // List<User> users = [];
 
-  setUp(() => {});
+  // setUp(() => {});
+  //
 
-  testWidgets('Test to see if CircleAnimation is in Login Screen',
-      (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    //await Firebase.initializeApp();
+  // testWidgets('Test to see if Dialog Option is in Add Video Screen',
+  //     (WidgetTester tester) async {
+  //   // Build our app and trigger a frame.
+  //   //await Firebase.initializeApp();
 
-    await tester.pumpWidget(MaterialApp(home: LoginScreen()));
-    expect(find.byType(TextInputField), findsWidgets);
-  });
+  //   await tester.pumpWidget(const MaterialApp(home: AddVideoScreen()));
+  //   expect(find.byType(InkWell), findsWidgets);
+  // });
 
-  testWidgets('Test to see if Dialog Option is in Add Video Screen',
-      (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    //await Firebase.initializeApp();
+  // test("Check if users array is empty", () => {expect(users, <User>[])});
 
-    await tester.pumpWidget(const MaterialApp(home: AddVideoScreen()));
-    expect(find.byType(InkWell), findsWidgets);
-  });
-
-  test("Check if users array is empty", () => {expect(users, <User>[])});
-
-  test("Check if users array has 1 element", () {
-    users.add(User(
-        name: "", email: "", uid: "", profilePhoto: "", tiktokID: "", bio: ""));
-    expect(users.length, 1);
-  });
+  // test("Check if users array has 1 element", () {
+  //   users.add(User(
+  //       name: "", email: "", uid: "", profilePhoto: "", tiktokID: "", bio: ""));
+  //   expect(users.length, 1);
+  // });
 }

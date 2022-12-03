@@ -128,6 +128,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       ]),
                     ),
                     child: const Center(
+                      key: Key("Reset password"),
                       child: Text(
                         "Reset password",
                         style: TextStyle(

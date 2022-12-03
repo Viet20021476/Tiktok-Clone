@@ -193,6 +193,7 @@ class LoginScreen extends StatelessWidget {
                         },
                       ),
                       InkWell(
+                        key: const Key('forgot-password-screen-button'),
                         child: const Text(
                           'Forgot password?',
                           style: TextStyle(

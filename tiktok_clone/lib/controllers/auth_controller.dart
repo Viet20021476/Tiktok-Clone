@@ -40,7 +40,7 @@ class AuthController extends GetxController {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
-          'You has sucessfully selected your profile picture');
+          'You has successfully selected your profile picture');
       setPickedImage(File(pickedImage.path));
     }
   }
@@ -118,19 +118,11 @@ class AuthController extends GetxController {
             'On Snap!', 'Please enter all the fields!', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
         _isLoading.value = false;
-
-        // Get.snackbar(
-        //   'Error logging in',
-        //   'Please enter all the fields',
-        // );
       }
     } catch (e) {
       Get.back();
-
       _isLoading.value = false;
-
-      final snackbar =
-          createSnackbar('Error logging in', e.toString(), ContentType.failure);
+      final snackbar = createSnackbar('Error logging in', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }
@@ -144,13 +136,13 @@ class AuthController extends GetxController {
             'Please check your email!', ContentType.success);
         snackbarKey.currentState?.showSnackBar(snackbar);
       } else {
-        final snackbar = createSnackbar('Error reseting password',
+        final snackbar = createSnackbar('Error resetting password',
             'Please enter all the field', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
       }
     } catch (e) {
       final snackbar = createSnackbar(
-          'Error reseting password', e.toString(), ContentType.failure);
+          'Error resetting password', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }

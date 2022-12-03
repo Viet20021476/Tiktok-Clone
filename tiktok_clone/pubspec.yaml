@@ -43,16 +43,14 @@ dependencies:
   marquee: ^2.2.3
   firebase_storage: ^11.0.6
   cloud_firestore: ^4.1.0
-  lint: ^1.10.0
   flutter_svg: ^1.1.5
   image_picker: ^0.8.6
   video_player: ^2.4.7
   video_compress: ^3.1.0
+  better_player: ^0.0.83
   timeago: ^3.3.0
   font_awesome_flutter: ^10.2.1
   awesome_snackbar_content: ^0.1.0
-  integration_test:
-    sdk: flutter
   path_provider: ^2.0.11
   expandable_text: ^2.3.0
   flutter_native_splash: ^2.2.14
@@ -65,8 +63,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  integration_test:
+    sdk: flutter
   flutter_launcher_icons: ^0.11.0
+
+flutter_lints: ^2.0.0
 
 flutter_icons:
   android: true

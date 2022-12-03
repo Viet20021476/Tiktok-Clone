@@ -30,6 +30,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: InkWell(
+          key: Key('pass-back'),
           child: const Icon(
             Icons.arrow_back,
             color: Colors.black,

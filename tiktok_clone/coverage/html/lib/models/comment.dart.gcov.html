@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib/models/comment.dart</title>
+  <title>LCOV - lcov.info - lib\models\comment.dart</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -19,7 +19,7 @@
         <table cellpadding=1 border=0 width="100%">
           <tr>
             <td width="10%" class="headerItem">Current view:</td>
-            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lib/models</a> - comment.dart<span style="font-size: 80%;"> (source / <a href="comment.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lib\models\comment.dart</a> - comment.dart<span style="font-size: 80%;"> (source / <a href="comment.dart.func-sort-c.html">functions</a>)</span></td>
             <td width="5%"></td>
             <td width="15%"></td>
             <td width="10%" class="headerCovTableHead">Hit</td>
@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">11</td>
             <td class="headerCovTableEntry">19</td>
-            <td class="headerCovTableEntryLo">0.0 %</td>
+            <td class="headerCovTableEntryLo">57.9 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-11-25 12:53:59</td>
+            <td class="headerValue">Fri Dec  2 13:15:16 2022</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -72,7 +72,7 @@
 <a name="10"><span class="lineNum">      10 </span>            :   String uid;</a>
 <a name="11"><span class="lineNum">      11 </span>            :   String id;</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineNoCov">          0 :   Comment({</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          1 :   Comment({</span></a>
 <a name="14"><span class="lineNum">      14 </span>            :     required this.username,</a>
 <a name="15"><span class="lineNum">      15 </span>            :     required this.comment,</a>
 <a name="16"><span class="lineNum">      16 </span>            :     required this.datePublished,</a>
@@ -92,16 +92,16 @@
 <a name="30"><span class="lineNum">      30 </span><span class="lineNoCov">          0 :         'id': id,</span></a>
 <a name="31"><span class="lineNum">      31 </span>            :       };</a>
 <a name="32"><span class="lineNum">      32 </span>            : </a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineNoCov">          0 :   static Comment fromSnap(DocumentSnapshot snap) {</span></a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineNoCov">          0 :     var snapshot = snap.data() as Map&lt;String, dynamic&gt;;</span></a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :     return Comment(</span></a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :       username: snapshot['username'],</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :       comment: snapshot['comment'],</span></a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :       datePublished: snapshot['datePublished'],</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :       likes: snapshot['likes'],</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :       profilePhoto: snapshot['profilePhoto'],</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :       uid: snapshot['uid'],</span></a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :       id: snapshot['id'],</span></a>
+<a name="33"><span class="lineNum">      33 </span><span class="lineCov">          1 :   static Comment fromSnap(DocumentSnapshot snap) {</span></a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">          1 :     var snapshot = snap.data() as Map&lt;String, dynamic&gt;;</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">          1 :     return Comment(</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">          1 :       username: snapshot['username'],</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">          1 :       comment: snapshot['comment'],</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">          1 :       datePublished: snapshot['datePublished'],</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :       likes: snapshot['likes'],</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">          1 :       profilePhoto: snapshot['profilePhoto'],</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">          1 :       uid: snapshot['uid'],</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">          1 :       id: snapshot['id'],</span></a>
 <a name="43"><span class="lineNum">      43 </span>            :     );</a>
 <a name="44"><span class="lineNum">      44 </span>            :   }</a>
 <a name="45"><span class="lineNum">      45 </span>            : }</a>
@@ -113,7 +113,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.15.alpha0w</a></td></tr>
   </table>
   <br>
 

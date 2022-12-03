@@ -28,6 +28,7 @@ class EditProfileScreen extends StatelessWidget {
                 fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
           ),
           leading: IconButton(
+            key: Key('profile-back'),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -121,6 +122,7 @@ class EditProfileScreen extends StatelessWidget {
               ],
             ),
             InkWell(
+              key: Key('name'),
               onTap: () {
                 Get.to(() => EditContentScreen(
                       title: 'Name',

@@ -71,8 +71,7 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  buildProfile(String profilePhoto, String uid,
-      VideoPlayerController videoPlayerController) {
+  buildProfile(String profilePhoto, String uid, int index) {
     return SizedBox(
       width: 50,
       height: 60,
@@ -94,6 +93,8 @@ class _VideoScreenState extends State<VideoScreen> {
               ),
             ),
             onTap: () async {
+              VideoPlayerController videoPlayerController =
+                  Get.find<VideoPlayerController>(tag: tag + index.toString());
               videoPlayerController.pause();
               final checkData = await Navigator.push(
                   context,
@@ -177,8 +178,8 @@ class _VideoScreenState extends State<VideoScreen> {
       ),
       resizeToAvoidBottomInset: true,
       body: Obx(() {
-        print(widget.thumbnail);
         return PageView.builder(
+            key: Key('page-view'),
             controller: PageController(
                 initialPage: widget.thumbnail == -1 ? 0 : widget.thumbnail,
                 viewportFraction: 1,
@@ -191,14 +192,15 @@ class _VideoScreenState extends State<VideoScreen> {
               final data = widget.thumbnail == -1
                   ? videoController.videoList[index]
                   : videoController.profileVideoList[index];
-              VideoPlayerController videoPlayerController =
-                  VideoPlayerController.network(data.videoUrl);
+              print('bug herererererererereere');
 
               return Stack(
                 children: [
                   VideoPlayerItem(
                     videoUrl: data.videoUrl,
-                    videoPlayerController: videoPlayerController,
+                    tag: tag,
+                    index: index,
+                    /*videoPlayerController: videoPlayerController,*/
                   ),
                   Column(
                     children: [
@@ -275,8 +277,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  buildProfile(data.profilePhoto, data.uid,
-                                      videoPlayerController),
+                                  buildProfile(
+                                      data.profilePhoto, data.uid, index),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -305,9 +307,10 @@ class _VideoScreenState extends State<VideoScreen> {
                                   Column(
                                     children: [
                                       InkWell(
+                                          key: Key('comment-btn'),
                                           onTap: () {
-                                            showCommentBottomSheet(context,
-                                                data.id, videoPlayerController);
+                                            showCommentBottomSheet(
+                                                context, data.id, tag, index);
                                           },
                                           child: const Icon(
                                               TikTokIcons.chatBubble,
@@ -363,8 +366,8 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  void showCommentBottomSheet(BuildContext context, String id,
-      VideoPlayerController videoPlayerController) {
+  void showCommentBottomSheet(
+      BuildContext context, String id, String tag, int index) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -373,10 +376,7 @@ class _VideoScreenState extends State<VideoScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return CommentScreen(
-            id: id,
-            videoPlayerController: videoPlayerController,
-          );
+          return CommentScreen(id: id, tag: tag, index: index);
         });
   }
 }

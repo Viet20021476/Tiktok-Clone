@@ -24,7 +24,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String register = 'Register';
     return Obx(() {
       return Scaffold(
-        key: const Key('register-screen'),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
             // ignore: avoid_unnecessary_containers
@@ -80,6 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       top: 30,
                       right: 20,
                       child: Center(
+                        key: Key('register-label'),
                         child: Text(
                           register,
                           style: const TextStyle(
