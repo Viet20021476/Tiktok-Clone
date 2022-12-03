@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/video_screen.dart';
 
+// ignore: must_be_immutable
 class FirstTab extends StatelessWidget {
   ProfileController controller;
   FirstTab({super.key, required this.controller});

@@ -5,6 +5,7 @@ import 'package:tiktok_clone/controllers/profile_controller.dart';
 import 'package:tiktok_clone/views/screens/authens/change_password_sceen.dart';
 import 'package:tiktok_clone/views/widgets/option_row.dart';
 
+// ignore: must_be_immutable
 class SettingScreen extends StatefulWidget {
   SettingScreen({super.key, required this.controller});
   ProfileController controller;
@@ -22,6 +23,7 @@ class _SettingScreenState extends State<SettingScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
+          key: Key('setting-back'),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -69,6 +71,7 @@ class _SettingScreenState extends State<SettingScreen> {
               child: Column(
                 children: [
                   InkWell(
+                    key: Key('change-pass-btn'),
                     onTap: () {
                       Get.to(() => ChangePasswordScreen());
                     },

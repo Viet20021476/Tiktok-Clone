@@ -10,9 +10,10 @@ import 'package:tiktok_clone/views/screens/mainScreen/profiletab_3.dart';
 import 'package:tiktok_clone/views/screens/mainScreen/setting_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
+  final String tag = numCheck.toString();
   final String uid;
   final bool isFromMethod;
-  const ProfileScreen({Key? key, required this.uid, required this.isFromMethod})
+  ProfileScreen({Key? key, required this.uid, required this.isFromMethod})
       : super(key: key);
 
   @override
@@ -20,25 +21,30 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  ProfileController profileController = Get.put(ProfileController());
+  late ProfileController profileController =
+      Get.put(ProfileController(), tag: widget.tag);
 
   @override
   void initState() {
     super.initState();
+
+    numCheck++;
     profileController.updateUserId(widget.uid);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   Get.delete<ProfileController>(tag: widget.tag);
+  //   super.dispose();
+  //   profileController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
-        init: ProfileController(),
+        init: profileController,
         builder: (controller) {
-          if (controller.isLoading) {
+          if (profileController.isLoading) {
             return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -52,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             );
           }
-          print(controller.user['tiktokID']);
+          print(profileController.user['tiktokID']);
           return DefaultTabController(
             length: 3,
             child: Scaffold(
@@ -63,14 +69,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      controller.user['name'],
+                      profileController.user['name'],
                       style: const TextStyle(color: Colors.black, fontSize: 15),
                     ),
                     widget.uid == authController.user.uid &&
                             !widget.isFromMethod
                         ? InkWell(
                             onTap: (() {
-                              showSignOutBottomSheet(context, controller);
+                              showSignOutBottomSheet(
+                                  context, profileController);
                             }),
                             child: const Icon(
                               Icons.arrow_drop_down,
@@ -100,6 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                 actions: [
                   InkWell(
+                    // key: Key('setting'),
                     onTap: () {
                       widget.uid == authController.user.uid
                           ? Get.to(() => SettingScreen(
@@ -122,13 +130,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CircleAvatar(
                   radius: 38,
                   backgroundImage:
-                      NetworkImage(controller.user['profilePhoto']),
+                      NetworkImage(profileController.user['profilePhoto']),
                 ),
 
                 // user name
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text('@' + controller.user['tiktokID'],
+                  child: Text('@' + profileController.user['tiktokID'],
                       style:
                           const TextStyle(color: Colors.black, fontSize: 15)),
                 ),
@@ -143,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         alignment: Alignment.centerRight,
                         child: Column(
                           children: [
-                            Text(controller.user['following'],
+                            Text(profileController.user['following'],
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -161,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         child: Column(
                           children: [
-                            Text(controller.user['followers'],
+                            Text(profileController.user['followers'],
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -179,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       alignment: Alignment.centerLeft,
                       child: Column(
                         children: [
-                          Text(controller.user['likes'],
+                          Text(profileController.user['likes'],
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -202,13 +210,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
+                      key: Key('Edit-btn'),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 40),
                         decoration: BoxDecoration(
                             color: widget.uid == authController.user.uid
                                 ? Colors.white
-                                : !controller.user['isFollowing']
+                                : !profileController.user['isFollowing']
                                     ? Colors.red
                                     : Colors.white,
                             border: Border.all(color: Colors.grey.shade300),
@@ -216,13 +225,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Text(
                           widget.uid == authController.user.uid
                               ? "Edit profile"
-                              : controller.user['isFollowing']
+                              : profileController.user['isFollowing']
                                   ? 'Unfollow'
                                   : 'Follow',
                           style: widget.uid == authController.user.uid
                               ? const TextStyle(
                                   color: Colors.black, fontSize: 14)
-                              : !controller.user['isFollowing']
+                              : !profileController.user['isFollowing']
                                   ? const TextStyle(
                                       color: Colors.white, fontSize: 14)
                                   : const TextStyle(
@@ -231,10 +240,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       onTap: () {
                         if (widget.uid == authController.user.uid) {
-                          Get.to(
-                              () => EditProfileScreen(controller: controller));
+                          Get.to(() =>
+                              EditProfileScreen(controller: profileController));
                         } else {
-                          controller.followUser();
+                          profileController.followUser();
                         }
                       },
                     ),
@@ -273,9 +282,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 InkWell(
                   onTap: (() {}),
                   child: Text(
-                    controller.user['bio'] == ''
+                    profileController.user['bio'] == ''
                         ? "User bio here"
-                        : controller.user['bio'],
+                        : profileController.user['bio'],
                     style: TextStyle(color: Colors.grey[700]),
                     textAlign: TextAlign.center,
                   ),
@@ -307,7 +316,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: TabBarView(
                   children: [
                     FirstTab(
-                      controller: controller,
+                      controller: profileController,
                     ),
                     const SecondTab(),
                     const ThirdTab()
@@ -345,9 +354,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 leading: CircleAvatar(
                   backgroundColor: Colors.black,
                   backgroundImage:
-                      NetworkImage(controller.user['profilePhoto']),
+                      NetworkImage(profileController.user['profilePhoto']),
                 ),
-                title: Text(controller.user['name']),
+                title: Text(profileController.user['name']),
                 trailing: const Icon(
                   Icons.check,
                   color: Colors.red,

@@ -1,10 +1,21 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
-  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  String tag;
+  int index;
+  // VideoPlayerController videoPlayerController;
+  VideoPlayerItem(
+      {Key? key, required this.videoUrl, required this.tag, required this.index
+      /*required this.videoPlayerController*/
+      })
+      : super(key: key);
 
   @override
   State<VideoPlayerItem> createState() => _VideoPlayerItemState();
@@ -14,6 +25,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController videoPlayerController;
   late Future _initializeVideoPlayer;
   bool isPlaying = true;
+
+  late Rx<String> currentRoute;
 
   @override
   void initState() {
@@ -29,7 +42,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         }
       });
     });
-
+    Get.put(videoPlayerController, tag: widget.tag + widget.index.toString());
     print('init' + videoPlayerController.toString());
   }
 
@@ -81,6 +94,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                     ],
                   ),
                   onTap: () {
+                    print(Get.currentRoute);
                     isPlaying
                         ? videoPlayerController.pause()
                         : videoPlayerController.play();

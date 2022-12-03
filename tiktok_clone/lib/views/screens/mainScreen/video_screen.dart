@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,9 @@ import 'package:tiktok_clone/views/screens/mainScreen/profile_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/tik_tok_icons.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
+import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class VideoScreen extends StatefulWidget {
   String uid;
   int thumbnail;
@@ -24,8 +24,9 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  final VideoController videoController = Get.put(VideoController());
-  late Timer timer;
+  String tag = numCheck.toString();
+
+  late VideoController videoController;
 
   bool _isFollowingSeleted = false;
 
@@ -33,7 +34,16 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
     print("init video screen");
+    Get.put(VideoController(), tag: tag);
+    videoController = Get.find<VideoController>(tag: tag);
+    numCheck++;
     videoController.getProfileVideos(widget.uid);
+  }
+
+  @override
+  void dispose() {
+    Get.delete<VideoController>(tag: tag);
+    super.dispose();
   }
 
   buildMusicAlbum(String profilePhoto) {
@@ -61,8 +71,7 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
-  buildProfile(
-      String profilePhoto, String uid, VideoPlayerItem videoPlayerItem) {
+  buildProfile(String profilePhoto, String uid, int index) {
     return SizedBox(
       width: 50,
       height: 60,
@@ -84,31 +93,26 @@ class _VideoScreenState extends State<VideoScreen> {
               ),
             ),
             onTap: () async {
-              // Get.to(() => VideoScreen());
-              // videoPlayerItem.printt();
-              // videoPlayerItem.pauseVideo();
-              // print(videoPlayerItem);
-              // final checkData = await Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => ProfileScreen(
-              //               uid: uid,
-              //               isFromMethod: true,
-              //             )));
-              // print(checkData);
-              //await videoController.getProfileVideos(uid);
-
-              Get.to(() => ProfileScreen(
-                    uid: uid,
-                    isFromMethod: true,
-                  ));
-              // if (checkData != null) {
-              //   videoPlayerItem.playVideo();
-              //   print(videoPlayerItem);
-              // } else {
-              //   videoPlayerItem.playVideo();
-              //   print(videoPlayerItem);
-              // }
+              VideoPlayerController videoPlayerController =
+                  Get.find<VideoPlayerController>(tag: tag + index.toString());
+              videoPlayerController.pause();
+              final checkData = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileScreen(
+                            uid: uid,
+                            isFromMethod: true,
+                          )));
+              // await videoController.getProfileVideos(uid);
+              // Get.to(() => ProfileScreen(
+              //       uid: uid,
+              //       isFromMethod: true,
+              //     ));
+              if (checkData != null) {
+                videoPlayerController.play();
+              } else {
+                videoPlayerController.play();
+              }
             },
           ),
           Positioned(
@@ -174,8 +178,8 @@ class _VideoScreenState extends State<VideoScreen> {
       ),
       resizeToAvoidBottomInset: true,
       body: Obx(() {
-        print(widget.thumbnail);
         return PageView.builder(
+            key: Key('page-view'),
             controller: PageController(
                 initialPage: widget.thumbnail == -1 ? 0 : widget.thumbnail,
                 viewportFraction: 1,
@@ -188,13 +192,16 @@ class _VideoScreenState extends State<VideoScreen> {
               final data = widget.thumbnail == -1
                   ? videoController.videoList[index]
                   : videoController.profileVideoList[index];
-              VideoPlayerItem videoPlayerItem =
-                  VideoPlayerItem(videoUrl: data.videoUrl);
-              print('re create videoplayer item' + videoPlayerItem.toString());
+              print('bug herererererererereere');
 
               return Stack(
                 children: [
-                  videoPlayerItem,
+                  VideoPlayerItem(
+                    videoUrl: data.videoUrl,
+                    tag: tag,
+                    index: index,
+                    /*videoPlayerController: videoPlayerController,*/
+                  ),
                   Column(
                     children: [
                       const SizedBox(height: 100),
@@ -270,8 +277,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  buildProfile(data.profilePhoto, data.uid,
-                                      videoPlayerItem),
+                                  buildProfile(
+                                      data.profilePhoto, data.uid, index),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -300,9 +307,10 @@ class _VideoScreenState extends State<VideoScreen> {
                                   Column(
                                     children: [
                                       InkWell(
+                                          key: Key('comment-btn'),
                                           onTap: () {
-                                            showCommentBottomSheet(context,
-                                                data.id, videoPlayerItem);
+                                            showCommentBottomSheet(
+                                                context, data.id, tag, index);
                                           },
                                           child: const Icon(
                                               TikTokIcons.chatBubble,
@@ -359,7 +367,7 @@ class _VideoScreenState extends State<VideoScreen> {
   }
 
   void showCommentBottomSheet(
-      BuildContext context, String id, VideoPlayerItem videoPlayerItem) {
+      BuildContext context, String id, String tag, int index) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -368,10 +376,7 @@ class _VideoScreenState extends State<VideoScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return CommentScreen(
-            id: id,
-            videoPlayerItem: videoPlayerItem,
-          );
+          return CommentScreen(id: id, tag: tag, index: index);
         });
   }
 }

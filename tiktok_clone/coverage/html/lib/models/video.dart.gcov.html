@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib/models/video.dart</title>
+  <title>LCOV - lcov.info - lib\models\video.dart</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -19,7 +19,7 @@
         <table cellpadding=1 border=0 width="100%">
           <tr>
             <td width="10%" class="headerItem">Current view:</td>
-            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lib/models</a> - video.dart<span style="font-size: 80%;"> (source / <a href="video.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lib\models\video.dart</a> - video.dart<span style="font-size: 80%;"> (source / <a href="video.dart.func-sort-c.html">functions</a>)</span></td>
             <td width="5%"></td>
             <td width="15%"></td>
             <td width="10%" class="headerCovTableHead">Hit</td>
@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">15</td>
             <td class="headerCovTableEntry">27</td>
-            <td class="headerCovTableEntryLo">0.0 %</td>
+            <td class="headerCovTableEntryLo">55.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-11-25 12:53:59</td>
+            <td class="headerValue">Fri Dec  2 13:15:16 2022</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -75,7 +75,7 @@
 <a name="13"><span class="lineNum">      13 </span>            :   String thumbnail;</a>
 <a name="14"><span class="lineNum">      14 </span>            :   String profilePhoto;</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 :   Video({</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">          1 :   Video({</span></a>
 <a name="17"><span class="lineNum">      17 </span>            :     required this.userName,</a>
 <a name="18"><span class="lineNum">      18 </span>            :     required this.uid,</a>
 <a name="19"><span class="lineNum">      19 </span>            :     required this.id,</a>
@@ -103,21 +103,21 @@
 <a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :         &quot;profilePhoto&quot;: profilePhoto,</span></a>
 <a name="42"><span class="lineNum">      42 </span>            :       };</a>
 <a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :   static Video fromSnap(DocumentSnapshot snap) {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :     var snapshot = snap.data() as Map&lt;String, dynamic&gt;;</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">          1 :   static Video fromSnap(DocumentSnapshot snap) {</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">          1 :     var snapshot = snap.data() as Map&lt;String, dynamic&gt;;</span></a>
 <a name="46"><span class="lineNum">      46 </span>            : </a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :     return Video(</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :         userName: snapshot[&quot;userName&quot;],</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :         uid: snapshot[&quot;uid&quot;],</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :         id: snapshot[&quot;id&quot;],</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :         likes: snapshot[&quot;likes&quot;],</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :         commentCount: snapshot[&quot;commentCount&quot;],</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :         shareCount: snapshot[&quot;shareCount&quot;],</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :         songName: snapshot[&quot;songName&quot;],</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :         caption: snapshot[&quot;caption&quot;],</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :         videoUrl: snapshot[&quot;videoUrl&quot;],</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineNoCov">          0 :         thumbnail: snapshot[&quot;thumbnail&quot;],</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineNoCov">          0 :         profilePhoto: snapshot[&quot;profilePhoto&quot;]);</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">          1 :     return Video(</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          1 :         userName: snapshot[&quot;userName&quot;],</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">          1 :         uid: snapshot[&quot;uid&quot;],</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">          1 :         id: snapshot[&quot;id&quot;],</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          1 :         likes: snapshot[&quot;likes&quot;],</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 :         commentCount: snapshot[&quot;commentCount&quot;],</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :         shareCount: snapshot[&quot;shareCount&quot;],</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :         songName: snapshot[&quot;songName&quot;],</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          1 :         caption: snapshot[&quot;caption&quot;],</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :         videoUrl: snapshot[&quot;videoUrl&quot;],</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          1 :         thumbnail: snapshot[&quot;thumbnail&quot;],</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          1 :         profilePhoto: snapshot[&quot;profilePhoto&quot;]);</span></a>
 <a name="59"><span class="lineNum">      59 </span>            :   }</a>
 <a name="60"><span class="lineNum">      60 </span>            : }</a>
 </pre>
@@ -128,7 +128,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.15.alpha0w</a></td></tr>
   </table>
   <br>
 

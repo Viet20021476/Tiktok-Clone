@@ -41,7 +41,6 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _cameraController.initialize().then((_) {
       if (!mounted) return;
@@ -52,7 +51,6 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pageController.dispose();
     _cameraController.dispose();
@@ -60,7 +58,6 @@ class _AddVideoScreenState extends State<AddVideoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,

@@ -50,6 +50,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 height: 250,
               ),
               Row(
+
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   ImageIcon(
@@ -70,6 +71,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
               ),
               const SizedBox(height: 3),
               const Text(
+
                 "Notifications about your account will appear here",
                 style: TextStyle(
                     fontSize: 13,

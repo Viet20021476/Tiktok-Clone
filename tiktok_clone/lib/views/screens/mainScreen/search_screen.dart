@@ -127,7 +127,6 @@ class SearchScreen extends StatelessWidget {
                         itemCount: searchController.searchedUsers.length,
                         itemBuilder: (context, index) {
                           User user = searchController.searchedUsers[index];
-                          RxBool isFollowing = false.obs;
                           return InkWell(
                             onTap: (() async {
                               Navigator.of(context).push(

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -41,7 +40,7 @@ class AuthController extends GetxController {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
-          'You has sucessfully selected your profile picture');
+          'You has successfully selected your profile picture');
       setPickedImage(File(pickedImage.path));
     }
   }
@@ -119,19 +118,11 @@ class AuthController extends GetxController {
             'On Snap!', 'Please enter all the fields!', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
         _isLoading.value = false;
-
-        // Get.snackbar(
-        //   'Error logging in',
-        //   'Please enter all the fields',
-        // );
       }
     } catch (e) {
       Get.back();
-
       _isLoading.value = false;
-
-      final snackbar =
-          createSnackbar('Error logging in', e.toString(), ContentType.failure);
+      final snackbar = createSnackbar('Error logging in', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }
@@ -145,13 +136,13 @@ class AuthController extends GetxController {
             'Please check your email!', ContentType.success);
         snackbarKey.currentState?.showSnackBar(snackbar);
       } else {
-        final snackbar = createSnackbar('Error reseting password',
+        final snackbar = createSnackbar('Error resetting password',
             'Please enter all the field', ContentType.warning);
         snackbarKey.currentState?.showSnackBar(snackbar);
       }
     } catch (e) {
       final snackbar = createSnackbar(
-          'Error reseting password', e.toString(), ContentType.failure);
+          'Error resetting password', e.toString(), ContentType.failure);
       snackbarKey.currentState?.showSnackBar(snackbar);
     }
   }

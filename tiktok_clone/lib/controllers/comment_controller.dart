@@ -7,7 +7,9 @@ import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/models/comment.dart';
 
 class CommentController extends GetxController {
-  String userPhoto = '';
+
+  late final Rx<String> _userPhoto = Rx<String>('');
+  String get userPhoto => _userPhoto.value;
   final Rx<List<Comment>> comments = Rx<List<Comment>>([]);
   List<Comment> get commentList => comments.value;
   final Rx<bool> _isLoading = false.obs;
@@ -18,13 +20,14 @@ class CommentController extends GetxController {
   updatePostId(String id) {
     _postId = id;
     getComment();
+    getProfilePhoto();
   }
 
   getProfilePhoto() async {
     DocumentSnapshot userDoc =
         await firestore.collection('users').doc(authController.user.uid).get();
     final userData = userDoc.data()! as Map<String, dynamic>;
-    userPhoto = userData['profilePhoto'];
+    _userPhoto.value = userData['profilePhoto'];
   }
 
   getComment() async {

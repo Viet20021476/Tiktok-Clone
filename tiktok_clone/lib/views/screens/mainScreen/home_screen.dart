@@ -45,14 +45,27 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: pageIdx,
           items: [
             const BottomNavigationBarItem(
-                icon: Icon(TikTokIcons.home), label: " Home"),
+
+                icon: Icon(TikTokIcons.home, key: Key('video-button-bar'),), label: " Home"),
             const BottomNavigationBarItem(
-                icon: Icon(TikTokIcons.search), label: "Search"),
+                icon: Icon(
+                  TikTokIcons.search,
+                  key: Key('search-button-bar'),
+                ),
+                label: "Search"),
             BottomNavigationBarItem(icon: icon, label: ""),
             const BottomNavigationBarItem(
-                icon: Icon(TikTokIcons.messages), label: "Inbox"),
+                icon: Icon(
+                  TikTokIcons.messages,
+                  key: Key('inbox-button-bar'),
+                ),
+                label: "Inbox"),
             const BottomNavigationBarItem(
-                icon: Icon(TikTokIcons.profile), label: "Profile")
+                icon: Icon(
+                  TikTokIcons.profile,
+                  key: Key('profile-button-bar'),
+                ),
+                label: "Profile")
           ],
         ),
       ),

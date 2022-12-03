@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 
@@ -18,7 +16,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   bool obcuseText = true;
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     passwordController.dispose();
   }
@@ -33,6 +30,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: InkWell(
+          key: Key('pass-back'),
           child: const Icon(
             Icons.arrow_back,
             color: Colors.black,

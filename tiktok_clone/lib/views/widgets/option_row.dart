@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/profile_controller.dart';
 
+// ignore: must_be_immutable
 class OptionRow extends StatelessWidget {
   String title;
   ProfileController profileController;
