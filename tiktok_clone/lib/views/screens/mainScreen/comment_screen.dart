@@ -139,6 +139,7 @@ class _CommentScreenState extends State<CommentScreen> {
                           ),
                           trailing: InkWell(
                             onTap: () {
+                              
                               commentController.likeComment(comment.id);
                             },
                             child: !comment.likes
